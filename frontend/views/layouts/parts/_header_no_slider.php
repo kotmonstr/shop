@@ -46,7 +46,7 @@ use yii\helpers\Url;
                                         <li><a href="index-4.html">styles</a></li>
                                         <li><a href="index-5.html">contacts</a></li>
                                         <li><a href="<?= Url::to('/blog/index')?>">Статьи</a></li>
-                                        <li><a href="<?= Url::to('/backend.shop/admin/index')?>">Adminzone</a></li>
+                                        <li><a href="<?= Url::to('/admin/index')?>">Adminzone</a></li>
                                     </ul>
                                 </div>
                                 <ul class="social-icons">

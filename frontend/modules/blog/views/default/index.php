@@ -7,10 +7,10 @@ use yii\helpers\Url;
 <section id="content">
 <div class="sub-content">
   <div class="container">
-       <center><h3>Блог</h3></center>
+       <center><h3>Статьи</h3></center>
     <div class="row">
       <div class="span12">
-          <h4 class="bot-0">РЎРїРёСЃРѕРє СЃС‚Р°С‚РµР№</h4>
+          <h4 class="bot-0">kot</h4>
       </div>
     </div>
     <div class="row"> 
