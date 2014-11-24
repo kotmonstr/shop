@@ -1,6 +1,7 @@
 <?php
 
 namespace common\models;
+use yii\behaviors\TimestampBehavior;
 
 use Yii;
 
@@ -17,6 +18,16 @@ use Yii;
  */
 class Blog extends \yii\db\ActiveRecord
 {
+    
+    public function behaviors()
+{
+    return [
+        [
+            'class' => TimestampBehavior::className(),
+            'createdAtAttribute' => 'created_at',
+        ],
+    ];
+}
     /**
      * @inheritdoc
      */
@@ -31,7 +42,7 @@ class Blog extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'image', 'content', 'created_at', 'updated_at', 'author'], 'required'],
+            [['title', 'image', 'content',  'author'], 'required'],
             [['content'], 'string'],
             [['created_at', 'updated_at'], 'integer'],
             [['title', 'image'], 'string', 'max' => 255],

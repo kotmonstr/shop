@@ -6,6 +6,7 @@ use yii\web\Controller;
 use common\models\Blog;
 use Yii;
 use common\models\BlogSearch;
+use yii\data\Pagination;
 
 class DefaultController extends Controller {
 
@@ -15,9 +16,17 @@ class DefaultController extends Controller {
         //$this->layout = '/blog';
         // Вывести список статей
 
-        $model = Blog::find()->all();
-        //vd($model);
-        return $this->render('index', ['model' => $model]);
+     
+        $query = Blog::find();
+        
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize'=> 2]);
+        $models = $query->offset($pages->offset)
+        ->limit($pages->limit)
+        ->all();
+
+        return $this->render('index', [  'model' => $models,
+         'pages' => $pages]);
     }
 
     public function actionView() {
@@ -28,25 +37,24 @@ class DefaultController extends Controller {
         //vd($blog->title);
         return $this->render('view', ['blog' => $blog]);
     }
-    
-     /**
+
+    /**
      * Lists all Blog models.
      * @return mixed
      */
-    public function actionShow()
-    {
+    public function actionShow() {
         $this->layout = '/adminka';
         $searchModel = new BlogSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('show', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
     public function actionCreate() {
-         $this->layout = '/adminka';
+        $this->layout = '/adminka';
         $model = new Blog();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

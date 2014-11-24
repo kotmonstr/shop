@@ -44,7 +44,7 @@ $model = Image::getmodel();
                                         </li>
                                         <li><a href="<?= Url::to('/site/services')?>">services</a></li>
                                         <li><a href="<?= Url::to('/site/colection')?>">collections</a></li>
-                                        <li><a href="index-4.html">styles</a></li>
+                                        <li><a href="<?= Url::to('/image/index')?>">Фотографии</a></li>
                                         <li><a href="index-5.html">contacts</a></li>
                                         <li><a href="<?= Url::to('/blog/index')?>">Статьи</a></li>
                                         <li><a href="<?= Url::to('/admin/index')?>">Adminzone</a></li>
