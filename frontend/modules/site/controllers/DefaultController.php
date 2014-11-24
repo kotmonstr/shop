@@ -3,16 +3,20 @@
 namespace app\modules\site\controllers;
 
 use yii\web\Controller;
+;
 
-class DefaultController extends Controller
-{
-    public function actionIndex()
-    {
+class DefaultController extends Controller {
+
+
+
+    public function actionIndex() {
+
+
         return $this->render('index');
     }
-    public function actionError()
-    {
+
+    public function actionError() {
         return $this->render('error');
     }
-   
+
 }

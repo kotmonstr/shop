@@ -43,8 +43,8 @@ use yii\helpers\Url;
                                         </li>
                                         <li><a href="<?= Url::to('/site/services')?>">services</a></li>
                                         <li><a href="<?= Url::to('/site/colection')?>">collections</a></li>
-                                        <li><a href="index-4.html">styles</a></li>
-                                        <li><a href="index-5.html">contacts</a></li>
+                                        <li><a href="index-4.html">Видео</a></li>
+                                        <li><a href="index-5.html">Фоторгафии</a></li>
                                         <li><a href="<?= Url::to('/blog/index')?>">Статьи</a></li>
                                         <li><a href="<?= Url::to('/admin/index')?>">Adminzone</a></li>
                                     </ul>
@@ -64,7 +64,7 @@ use yii\helpers\Url;
     </div>
 
 
-</header>
+
 <style>
     
     .logo{

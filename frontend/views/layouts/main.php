@@ -21,7 +21,8 @@ AppAsset::register($this);
     </head>
     <body>
         <?php $this->beginBody() ?>
-        <?php echo $this->render('parts/_header') ?>
+        <?php echo $this->render('parts/_header_no_slider') ?>
+        <?php echo $this->render('parts/_slider') ?>
         <?= $content ?>
          <?php echo $this->render('parts/_footer') ?>
         <?php $this->endBody() ?>

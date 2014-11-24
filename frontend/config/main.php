@@ -37,6 +37,9 @@ return [
         'site' => [
             'class' => 'app\modules\site\Module',
         ],
+        'image' => [
+            'class' => 'app\modules\image\Module',
+        ],
     ],
     'params' => $params,
 ];
