@@ -2,7 +2,7 @@
 use yii\helpers\Url;
 
 ?>
-<header class="p0">
+
     <div class="container">
         <div class="row">
             <div class="span12">
@@ -16,7 +16,7 @@ use yii\helpers\Url;
                                                     this.value = ''"  >
                             <a href="#" onClick="document.getElementById('search-form').submit()"></a>
                         </form>
-                        <span class="contacts">Call Us Toll Free:  <span>+1 234 567 89 90</span><br>E-mail: <a href="#">kotmonstr@ukr.net</a></span>
+                        <span class="contacts"><?php if(!Yii::$app->user->isGuest){echo Yii::$app->user->identity->username; } ?></span>
                     </div>
                     <div class="navbar navbar_ clearfix">
                         <div class="navbar-inner navbar-inner_">
@@ -42,11 +42,17 @@ use yii\helpers\Url;
                                             </ul>
                                         </li>
                                         <li><a href="<?= Url::to('/site/services')?>">services</a></li>
-                                        <li><a href="<?= Url::to('/site/colection')?>">collections</a></li>
+                            
                                         <li><a href="index-4.html">Видео</a></li>
                                         <li><a href="index-5.html">Фоторгафии</a></li>
                                         <li><a href="<?= Url::to('/blog/index')?>">Статьи</a></li>
-                                        <li><a href="<?= Url::to('/admin/index')?>">Adminzone</a></li>
+                                          <?php if(!Yii::$app->user->isGuest){ ?><li><a href="<?= Url::to('/admin/index')?>">Админка</a></li><?php } ?>
+                                        <?php if(Yii::$app->user->isGuest){ ?>
+                                            <li><a href="<?= Url::to('/site/signup')?>">Регистрация</a></li>
+                                            <li><a href="<?= Url::to('/site/login')?>">Вход</a></li>
+                                        <?php  }else{ ?>
+                                            <li><a href="<?= Url::to('/site/logout')?>">Выход</a>
+                                        <?php } ?>
                                     </ul>
                                 </div>
                                 <ul class="social-icons">
@@ -62,7 +68,6 @@ use yii\helpers\Url;
             </div>
         </div>   
     </div>
-
 
 
 <style>

@@ -19,7 +19,7 @@ $this->registerJsFile('/js/jquery.ui.totop.js', ['depends' => AppAsset::classNam
 //$this->registerJsFile('/js/jquery.mobile.customized.min.js', ['depends' => AppAsset::className()]);
 $this->registerJsFile('/js/bootstrap.js', ['depends' => AppAsset::className()]);
 $this->registerJsFile('/js/custom/index.js', ['depends' => AppAsset::className()]);
-//$this->registerJsFile('/js/superfish.js', ['depends' => AppAsset::className()]);
+$this->registerJsFile('/js/superfish.js', ['depends' => AppAsset::className()]);
 
 //$this->registerJsFile('/js/forms.js', ['depends' => AppAsset::className()]);
 //$this->registerJsFile('/js/jquery.cokie.js', ['depends' => AppAsset::className()]);

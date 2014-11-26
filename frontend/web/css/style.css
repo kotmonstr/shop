@@ -779,7 +779,7 @@ address span {
   color: #c4c3c4;
   height: 36px;
   width: 270px;
-  padding: 10px 0 11px 18px;
+  padding: 10px 0 -1px 18px;
   line-height: 17px !important;
   margin: 0;
   border: none !important;
@@ -839,7 +839,7 @@ address span {
   box-shadow: none;
 }
 .contact-form .btn_ {
-  margin: 31px 0 0 16px;
+  margin: 31px 0 0 0px;
 }
 /*privacy*/
 .float {
