@@ -27,12 +27,12 @@ $this->params['breadcrumbs'][] = $this->title;
                   <div class="success">Contact form submitted!<strong><br>We will be in touch soon.</strong> </div>
                   <fieldset>
                       <label class="name">
-                       <input type="text" value="Name:" name="username">						
+                       <input type="text" placeholder="Имя" name="username">						
                        <span class="error">*This is not a valid name.</span> <span class="empty">*This field is required.</span>						
                   </label>	
                
                   <label class="password">						
-                       <input type="password" value="Password" name="password">						
+                       <input type="password" placeholder="Пароль" name="password">						
                        <span class="error">*This is not a valid phone number.</span> <span class="empty">*This field is required.</span>						
                   </label>		
             
