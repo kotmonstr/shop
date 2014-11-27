@@ -10,11 +10,6 @@ use yii\grid\GridView;
 $this->title = 'Images';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div id="content">
-    <div class="outer">
-        <div class="inner bg-light lter">
-            <div id="collapse4" class="body">
-            <!--Begin Datatables-->
 <div class="image-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -37,8 +32,4 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
-</div>
-</div>
-</div>
-</div>
 </div>

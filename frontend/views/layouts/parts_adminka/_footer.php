@@ -81,23 +81,6 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal --><!-- /#helpModal -->
 
-        <!--jQuery 2.1.1 -->
-        <script src="assets/lib/jquery/jquery.min.js"></script>
-
-        <!--Bootstrap -->
-        <script src="assets/lib/bootstrap/js/bootstrap.min.js"></script>
-
-        <!-- MetisMenu -->
-        <script src="assets/lib/metismenu/metisMenu.min.js"></script>
-
-        <!-- Screenfull -->
-        <script src="assets/lib/screenfull/screenfull.js"></script>
-
-        <!-- Metis core scripts -->
-        <script src="assets/js/core.min.js"></script>
-
-        <!-- Metis demo scripts -->
-        <script src="assets/js/app.min.js"></script>
-        <script src="assets/js/style-switcher.min.js"></script>
+     
   
 

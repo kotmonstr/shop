@@ -1,4 +1,6 @@
-  
+  <?php
+use yii\helpers\Url;
+  ?>
         <div class="bg-dark dk" id="wrap">
             <div id="top">
 
@@ -14,7 +16,7 @@
                                 <span class="icon-bar"></span> 
                                 <span class="icon-bar"></span> 
                             </button>
-                            <a href="index.html" class="navbar-brand">
+                            <a href="<?= Url::to('/site/index'); ?>" class="navbar-brand">
                                 <img src="/matis/img/logo.png" alt="">
                             </a> 
                         </header>

@@ -1,8 +1,6 @@
 <?php
 
 namespace common\models;
-
-use common\models\Image;
 use Yii;
 
 /**

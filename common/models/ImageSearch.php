@@ -8,7 +8,7 @@ use yii\data\ActiveDataProvider;
 use common\models\Image;
 
 /**
- * ImageSearch represents the model behind the search form about `common\models\Images`.
+ * ImageSearch represents the model behind the search form about `common\models\Image`.
  */
 class ImageSearch extends Image
 {
