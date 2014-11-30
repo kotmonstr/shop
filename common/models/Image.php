@@ -11,6 +11,18 @@ use Yii;
  */
 class Image extends \yii\db\ActiveRecord
 {
+    public function behaviors()
+{
+    return [
+       
+        [
+            'class' => 'mdm\upload\UploadBehavior',
+            'attribute' => 'file', // required, use to receive input file
+            'savedAttribute' => 'name', // optional, use to link model with saved file.
+            'uploadPath' => '@common/upload', // saved directory. default to '@runtime/upload'
+        ],
+    ];
+}
     public $file;
     /**
      * @inheritdoc

@@ -40,6 +40,9 @@ return [
         'image' => [
             'class' => 'app\modules\image\Module',
         ],
+        'video' => [
+            'class' => 'app\modules\video\Module',
+        ],
     ],
     'params' => $params,
 ];

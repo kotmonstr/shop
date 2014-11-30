@@ -2,8 +2,6 @@
 
 namespace app\modules\image\controllers;
 
-
-
 use Yii;
 use common\models\Image;
 use common\models\ImageSearch;
@@ -14,23 +12,22 @@ use yii\filters\VerbFilter;
 /**
  * DefaultController implements the CRUD actions for Image model.
  */
-class DefaultController extends Controller
-{
-   
-public $layout = '/adminka';
+class DefaultController extends Controller {
+
+    public $layout = '/adminka';
+
     /**
      * Lists all Image models.
      * @return mixed
      */
-    public function actionIndex()
-    {
-       
+    public function actionIndex() {
+
         $searchModel = new ImageSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -39,10 +36,9 @@ public $layout = '/adminka';
      * @param string $id
      * @return mixed
      */
-    public function actionView($id)
-    {
+    public function actionView($id) {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+                    'model' => $this->findModel($id),
         ]);
     }
 
@@ -51,16 +47,24 @@ public $layout = '/adminka';
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
-        $model = new Image();
+    public function actionCreate() {
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+
+        $model = new Image();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $file = UploadedFile::getInstance($model, 'name');
+            if ($fileModel = FileModel::saveAs($file, '@common/upload')) {
+                
+            }
+
+            if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+                if ($model->saveUploadedFile() !== false) {
+                    $model->save();
+                    return $this->redirect();
+                }
+            } else {
+                return $this->render('create', ['model' => $model]);
+            }
         }
     }
 
@@ -70,15 +74,14 @@ public $layout = '/adminka';
      * @param string $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id) {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
-                'model' => $model,
+                        'model' => $model,
             ]);
         }
     }
@@ -89,8 +92,7 @@ public $layout = '/adminka';
      * @param string $id
      * @return mixed
      */
-    public function actionDelete($id)
-    {
+    public function actionDelete($id) {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -103,12 +105,12 @@ public $layout = '/adminka';
      * @return Image the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
-    {
+    protected function findModel($id) {
         if (($model = Image::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
 }
