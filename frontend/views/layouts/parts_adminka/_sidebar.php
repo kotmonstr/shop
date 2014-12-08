@@ -46,6 +46,11 @@ use yii\helpers\Url;
                         </a> 
                     </li>
                     <li class="">
+                        <a href="<?= Url::to('/video/index') ?>">
+                            <i class="fa"></i><span class="link-title">&nbsp;Youtube</span> 
+                        </a> 
+                    </li>
+                    <li class="">
                         <a href="javascript:;">
                             <i class="fa fa-building "></i>
                             <span class="link-title">Layouts</span> 
