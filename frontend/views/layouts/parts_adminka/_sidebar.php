@@ -57,74 +57,8 @@ use yii\helpers\Url;
                             <span class="fa arrow"></span> 
                         </a> 
                         <ul>
-                            <li>
-                                <a href="boxed.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp; Boxed Layout</a> 
-                            </li>
-                            <li>
-                                <a href="fixed-header-boxed.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp; Boxed Layout &amp; Fixed Header</a> 
-                            </li>
-                            <li>
-                                <a href="fixed-header-fixed-mini-sidebar.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp; Fixed Header and Fixed Mini Menu</a> 
-                            </li>
-                            <li>
-                                <a href="fixed-header-menu.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp; Fixed Header &amp; Menu</a> 
-                            </li>
-                            <li>
-                                <a href="fixed-header-mini-sidebar.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp; Fixed Header &amp; Mini Menu</a> 
-                            </li>
-                            <li>
-                                <a href="fixed-header.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp; Fixed Header</a> 
-                            </li>
-                            <li>
-                                <a href="fixed-menu-boxed.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp; Boxed Layout &amp; Fixed Menu</a> 
-                            </li>
-                            <li>
-                                <a href="fixed-menu.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp; Fixed Menu</a> 
-                            </li>
-                            <li>
-                                <a href="fixed-mini-sidebar.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp; Fixed &amp; Mini Menu</a> 
-                            </li>
-                            <li>
-                                <a href="fxhmoxed.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp; Boxed and Fixed Header &amp; Nav</a> 
-                            </li>
-                            <li>
-                                <a href="no-header-sidebar.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp; No Header &amp; Sidebars</a> 
-                            </li>
-                            <li>
-                                <a href="no-header.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp; No Header</a> 
-                            </li>
-                            <li>
-                                <a href="no-left-right-sidebar.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp; No Left &amp; Right Sidebar</a> 
-                            </li>
-                            <li>
-                                <a href="no-left-sidebar-main-search.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp; No Left Sidebar &amp; Main Search</a> 
-                            </li>
-                            <li>
-                                <a href="no-left-sidebar.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp; No Left Sidebar</a> 
-                            </li>
-                            <li>
-                                <a href="no-main-search.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp; No Main Search</a> 
-                            </li>
-                            <li>
-                                <a href="no-right-sidebar.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp; No Right Sidebar</a> 
-                            </li>
+                            
+                           
                             <li>
                                 <a href="sm.html">
                                     <i class="fa fa-angle-right"></i>&nbsp; Mini Sidebar</a> 
@@ -146,21 +80,7 @@ use yii\helpers\Url;
                                 <a href="bgimage.html">
                                     <i class="fa fa-angle-right"></i>&nbsp; Bg Image</a> 
                             </li>
-                            <li>
-                                <a href="button.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp; Buttons</a> 
-                            </li>
-                            <li>
-                                <a href="icon.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp; Icon</a> 
-                            </li>
-                            <li>
-                                <a href="pricing.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp; Pricing Table</a> 
-                            </li>
-                            <li>
-                                <a href="progress.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp; Progress</a> 
+                           
                             </li>
                         </ul>
                     </li>
@@ -177,65 +97,11 @@ use yii\helpers\Url;
                                 <a href="form-general.html">
                                     <i class="fa fa-angle-right"></i>&nbsp; Form General</a> 
                             </li>
-                            <li>
-                                <a href="form-validation.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp; Form Validation</a> 
-                            </li>
-                            <li>
-                                <a href="form-wizard.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp; Form Wizard</a> 
-                            </li>
-                            <li>
-                                <a href="form-wysiwyg.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp; Form WYSIWYG</a> 
-                            </li>
+                       
                         </ul>
                     </li>
-                    <li>
-                        <a href="table.html">
-                            <i class="fa fa-table"></i>
-                            <span class="link-title">Tables</span> 
-                        </a> 
-                    </li>
-                    <li>
-                        <a href="file.html">
-                            <i class="fa fa-file"></i>
-                            <span class="link-title">
-                                File Manager
-                            </span> 
-                        </a> 
-                    </li>
-                    <li>
-                        <a href="typography.html">
-                            <i class="fa fa-font"></i>
-                            <span class="link-title">
-                                Typography
-                            </span>  
-                        </a> 
-                    </li>
-                    <li>
-                        <a href="maps.html">
-                            <i class="fa fa-map-marker"></i><span class="link-title">
-                                Maps
-                            </span> 
-                        </a> 
-                    </li>
-                    <li>
-                        <a href="chart.html">
-                            <i class="fa fa fa-bar-chart-o"></i>
-                            <span class="link-title">
-                                Charts
-                            </span> 
-                        </a> 
-                    </li>
-                    <li>
-                        <a href="calendar.html">
-                            <i class="fa fa-calendar"></i>
-                            <span class="link-title">
-                                Calendar
-                            </span> 
-                        </a> 
-                    </li>
+                    
+                    
                     <li>
                         <a href="javascript:;">
                             <i class="fa fa-exclamation-triangle"></i>
@@ -245,26 +111,7 @@ use yii\helpers\Url;
                             <span class="fa arrow"></span> 
                         </a> 
                         <ul>
-                            <li>
-                                <a href="403.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp;403</a> 
-                            </li>
-                            <li>
-                                <a href="404.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp;404</a> 
-                            </li>
-                            <li>
-                                <a href="405.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp;405</a> 
-                            </li>
-                            <li>
-                                <a href="500.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp;500</a> 
-                            </li>
-                            <li>
-                                <a href="503.html">
-                                    <i class="fa fa-angle-right"></i>&nbsp;503</a> 
-                            </li>
+                            
                             <li>
                                 <a href="offline.html">
                                     <i class="fa fa-angle-right"></i>&nbsp;offline</a> 
@@ -275,31 +122,7 @@ use yii\helpers\Url;
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="grid.html">
-                            <i class="fa fa-columns"></i>
-                            <span class="link-title">
-                                Grid
-                            </span> 
-                        </a> 
-                    </li>
-                    <li>
-                        <a href="blank.html">
-                            <i class="fa fa-square-o"></i>
-                            <span class="link-title">
-                                Blank Page
-                            </span> 
-                        </a> 
-                    </li>
-                    <li class="nav-divider"></li>
-                    <li>
-                        <a href="login.html">
-                            <i class="fa fa-sign-in"></i>
-                            <span class="link-title">
-                                Login Page
-                            </span> 
-                        </a> 
-                    </li>
+                    
                     <li>
                         <a href="javascript:;">
                             <i class="fa fa-code"></i>
