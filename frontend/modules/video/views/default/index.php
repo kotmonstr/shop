@@ -1,5 +1,7 @@
 <?php
 $this->registerJsFile('/js/youtube.js');
+
+
 ?>
 
 
@@ -37,6 +39,10 @@ $this->registerJsFile('/js/youtube.js');
                                     <input class="validate[required] form-control" type="text" name="youtube" id="youtube" onkeyup="sendYoutubeCode()"/>
                                 </div>
                             </div>
+                               <div class="form-group info">
+                              
+                            </div>
+                            
 
                             <div class="form-group">
                                 <label class="control-label col-lg-4">Выберите категорию</label>
@@ -50,7 +56,10 @@ $this->registerJsFile('/js/youtube.js');
                                 </div>
                             </div>
 
-
+                        
+                            
+                            
+                         
                             <div class="form-actions no-margin-bottom">
                                 <input type="submit" value="Загрузить" class="btn btn-primary">
                             </div>
@@ -69,6 +78,8 @@ $this->registerJsFile('/js/youtube.js');
 
 <style>
     label{
+       
         color: #000080;
     }
+ 
 </style>
