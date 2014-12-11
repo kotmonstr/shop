@@ -2,6 +2,8 @@
 $this->registerJsFile('/js/youtube.js');
 
 
+
+use yii\helpers\Url;
 ?>
 
 
@@ -31,7 +33,7 @@ $this->registerJsFile('/js/youtube.js');
                         </div><!-- /.toolbar -->
                     </header>
                     <div id="collapse2" class="body">
-                        <form class="form-horizontal" id="youtube-form">
+                        <form class="form-horizontal" id="youtube-form" method="POST" action="<?= Url::to('/video/add') ?>">
                          
                             <div class="form-group">
                                 <label class="control-label col-lg-4">Введите адресс Youtube ролика</label>
@@ -39,6 +41,7 @@ $this->registerJsFile('/js/youtube.js');
                                     <input class="validate[required] form-control" type="text" name="youtube" id="youtube" onkeyup="sendYoutubeCode()"/>
                                 </div>
                             </div>
+                            
                                <div class="form-group info">
                               
                             </div>
@@ -47,11 +50,11 @@ $this->registerJsFile('/js/youtube.js');
                             <div class="form-group">
                                 <label class="control-label col-lg-4">Выберите категорию</label>
                                 <div class="col-lg-6">
-                                    <select name="sport" id="sport" class="validate[required] form-control">
-                                        <option value="">Choose a sport</option>
-                                        <option value="option1">Tennis</option>
-                                        <option value="option2">Football</option>
-                                        <option value="option3">Golf</option>
+                                    <select name="categoria"  class="validate[required] form-control">
+                                        <?php foreach($video_categoria as $video ){?>
+                                        <option value="<?= $video->id ?>"><?= $video->name ?></option>
+                                   
+                                        <?php } ?>
                                     </select>
                                 </div>
                             </div>
@@ -60,9 +63,7 @@ $this->registerJsFile('/js/youtube.js');
                             
                             
                          
-                            <div class="form-actions no-margin-bottom">
-                                <input type="submit" value="Загрузить" class="btn btn-primary">
-                            </div>
+                           
                             
                             
             <input type="hidden" class="csrf" name="<?= \Yii::$app->request->csrfParam ?>"

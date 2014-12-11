@@ -2,15 +2,17 @@
 
 namespace common\models;
 
+
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "video".
  *
  * @property integer $id
- * @property string $url
+ * @property string $youtube_id
  * @property string $title
- * @property string $author
+ * @property string $descr
  * @property integer $created_at
  * @property integer $categoria
  *
@@ -18,6 +20,17 @@ use Yii;
  */
 class Video extends \yii\db\ActiveRecord
 {
+        public function behaviors()
+{
+    return [
+        [
+            'class' => TimestampBehavior::className(),
+            'createdAtAttribute' => 'created_at',
+           
+        ],
+    ];
+}
+public $updated_at;
     /**
      * @inheritdoc
      */
@@ -32,10 +45,10 @@ class Video extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['url', 'title', 'author', 'categoria'], 'required'],
+            [['youtube_id', 'title', 'categoria'], 'required'],
+            [['descr'], 'string'],
             [['created_at', 'categoria'], 'integer'],
-            [['url', 'title'], 'string', 'max' => 255],
-            [['author'], 'string', 'max' => 100]
+            [['youtube_id', 'title'], 'string', 'max' => 255]
         ];
     }
 
@@ -46,9 +59,9 @@ class Video extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'url' => Yii::t('app', 'Url'),
+            'youtube_id' => Yii::t('app', 'Youtube ID'),
             'title' => Yii::t('app', 'Title'),
-            'author' => Yii::t('app', 'Author'),
+            'descr' => Yii::t('app', 'Descr'),
             'created_at' => Yii::t('app', 'Created At'),
             'categoria' => Yii::t('app', 'Categoria'),
         ];
@@ -57,7 +70,7 @@ class Video extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCategoria0()
+    public function getCategoria()
     {
         return $this->hasOne(VideoCategoria::className(), ['id' => 'categoria']);
     }

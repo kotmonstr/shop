@@ -23,10 +23,14 @@ AppAsset::register($this);
         <?php $this->beginBody() ?>
         <?php echo $this->render('parts_adminka/_header') ?>
         <?php echo $this->render('parts_adminka/_sidebar') ?>
-   
+
+       <?php
+foreach(Yii::$app->session->getAllFlashes() as $key => $message) {
+    echo '<div class="alert alert-' . $key . '">' . $message . '</div>';
+} ?>
         <?= $content ?>
-           
-         <?php echo $this->render('parts_adminka/_footer') ?>
+
+        <?php echo $this->render('parts_adminka/_footer') ?>
         <?php $this->endBody() ?>
     </body>  
 </html>

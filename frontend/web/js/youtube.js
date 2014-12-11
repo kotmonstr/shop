@@ -19,3 +19,9 @@ console.log('sendYoutubeCode');
         
     });
 }
+//$(document).ready(function(){
+//    if($("#yes").exists()) {
+//   $('.submit-send').
+//}
+//    
+//});

@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Url;
+use yii\widgets\LinkPager;
 ?>
 
 
@@ -13,7 +14,7 @@ use yii\helpers\Url;
                 <?php foreach ($model as $video): ?>
                     <div class="col-xs-6 col-md-4">
                      
-                             <iframe width="340" height="325" src="//www.youtube.com/embed/<?= $video->url; ?>" frameborder="0" allowfullscreen></iframe>
+                             <iframe width="340" height="325" src="//www.youtube.com/embed/<?= $video->youtube_id; ?>" frameborder="0" allowfullscreen></iframe>
                        
                     </div>
 
@@ -26,3 +27,9 @@ use yii\helpers\Url;
         </div>
     </div>
 </section>
+<?php
+ // display pagination
+  echo LinkPager::widget([
+      'pagination' => $pages,
+  ]);
+?>
