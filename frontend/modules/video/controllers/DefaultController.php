@@ -23,7 +23,7 @@ class DefaultController extends Controller {
         $model = Video::find()->where(['categoria' => $categoria_id]);
         //vd($model_video);
         $countQuery = clone $model;
-        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize' => 6]);
+        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize' => 9]);
         $model_video = $model->offset($pages->offset)
                 ->limit($pages->limit)
                 ->all();
