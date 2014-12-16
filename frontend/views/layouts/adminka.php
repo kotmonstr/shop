@@ -20,18 +20,21 @@ AppAsset::register($this);
         <?php $this->head() ?>
     </head>
     <body>
-        <?php $this->beginBody() ?>
-        <?php echo $this->render('parts_adminka/_header') ?>
-        <?php echo $this->render('parts_adminka/_sidebar') ?>
+        <div class="bg-dark" id="wrap" style="min-height:1000px">
+            <?php $this->beginBody() ?>
+            <?php echo $this->render('parts_adminka/_header') ?>
+            <?php echo $this->render('parts_adminka/_sidebar') ?>
 
-       <?php
-foreach(Yii::$app->session->getAllFlashes() as $key => $message) {
-    echo '<div class="alert alert-' . $key . '">' . $message . '</div>';
-} ?>
-        <?= $content ?>
+            <?php
+            foreach (Yii::$app->session->getAllFlashes() as $key => $message) {
+                echo '<div class="alert alert-' . $key . '">' . $message . '</div>';
+            }
+            ?>
+            <?= $content ?>
 
-        <?php echo $this->render('parts_adminka/_footer') ?>
-        <?php $this->endBody() ?>
+            <?php echo $this->render('parts_adminka/_footer') ?>
+            <?php $this->endBody() ?>
+        </div>   
     </body>  
 </html>
 <?php $this->endPage() ?>

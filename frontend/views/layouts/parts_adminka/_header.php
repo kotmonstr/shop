@@ -1,7 +1,9 @@
   <?php
 use yii\helpers\Url;
+use yii\helpers\Html;
+
   ?>
-        <div class="bg-dark dk" id="wrap">
+      
             <div id="top">
 
                 <!-- .navbar -->
@@ -88,8 +90,8 @@ use yii\helpers\Url;
                         </form><!-- /.main-search -->
                     </div><!-- /.search-bar -->
                     <div class="main-bar">
-                        <h3>
-                            <i class="fa fa-home"></i>&nbsp; Metis</h3>
+                     
+                        <h3><?= Html::encode('Ghbdtn') ?></h3>
                     </div><!-- /.main-bar -->
                 </header><!-- /.head -->
             </div><!-- /#top -->

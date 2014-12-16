@@ -23,9 +23,10 @@ class DefaultController extends Controller {
         $model = Video::find()->where(['categoria' => $categoria_id]);
         //vd($model_video);
         $countQuery = clone $model;
-        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize' => 9]);
+        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize' => 12]);
         $model_video = $model->offset($pages->offset)
                 ->limit($pages->limit)
+                ->orderBy('created_at Desc')
                 ->all();
 
 
@@ -42,10 +43,11 @@ class DefaultController extends Controller {
     }
 
     public function actionIndex() {
+        $pageName = 'Главная';
         $this->layout = '/adminka';
         $video_categoria = VideoCategoria::find()->all();
 
-        return $this->render('index', ['video_categoria' => $video_categoria]);
+        return $this->render('index', ['video_categoria' => $video_categoria, 'pageName'=> $pageName]);
     }
 
     public function actionYoutube() {
@@ -66,18 +68,11 @@ class DefaultController extends Controller {
         }
 
         $videoId = getYouTubeIdFromURL($url);
-
         $youtube = new Youtube(array('key' => 'AIzaSyBU4vsvP20CYdFuibdgTMOaZ10vt7JxV5c'));
         $video = $youtube->getVideoInfo($videoId);
         $title = $video->snippet->title;
-        //$title = $video->snippet->description;
-        $descr = $video->snippet->description;
-        //vd($video->snippet->title);
-        //vd($video->snippet->medium->url);
-        //vd($video);
+        $descr = $video->snippet->description;  
         $imageSrc = $video->snippet->thumbnails->medium->url;
-        $preview = $video->player->embedHtml;
-        //vd($preview);
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
 
@@ -94,6 +89,12 @@ class DefaultController extends Controller {
     public function actionAdd() {
 
         $data = Yii::$app->request->post();
+        //Поиск дубля
+        $duble = Video::find()->where(['youtube_id'=> $data[id] ])->one();
+        if(!empty($duble)){
+             Yii::$app->session->setFlash('error', ",Ролик уже сущестивует!");
+             return $this->redirect('/video/index');
+        }
         //vd($data);
         $_model = new Video;
         $_model->youtube_id = $data[id];
