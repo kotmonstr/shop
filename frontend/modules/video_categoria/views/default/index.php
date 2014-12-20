@@ -41,20 +41,7 @@ use yii\helpers\Url;
                         <div class="col-lg-6">
                             <select name="categoria"  class="validate[required] form-control">
                                 <?php foreach ($video_categoria as $video) { ?>
-                                    <option value=""></option>
                                     <option value="<?= $video->id ?>"><?= $video->name ?></option>
-
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-lg-4">Выберите автора</label>
-                        <div class="col-lg-6">
-                            <select name="author_id"  class="validate[required] form-control">
-                                <?php foreach ($authors as $author) { ?>
-                                    <option value=""></option>
-                                    <option value="<?= $author->id ?>"><?= $author->name ?></option>
 
                                 <?php } ?>
                             </select>
@@ -62,25 +49,21 @@ use yii\helpers\Url;
                     </div>
                     <input type="hidden" class="csrf" name="<?= \Yii::$app->request->csrfParam ?>"
                            value="<?= \Yii::$app->request->getCsrfToken() ?>">
-                    <div class="form-actions ">
-                        <center>     
-                            <input type="submit" value="Загрузить" class="btn btn-primary">
-                        </center>
-                    </div>
+
                 </form>
             </div>
         </div>
     </div>
-</div>
+    </div>
 
-<style>
-    label{
+    <style>
+        label{
 
-        color: #000080;
-    }
-    .form-control{
-        //background-color: rgb(166, 165, 165);
-        //color: #fff;
-    }
+            color: #000080;
+        }
+        .form-control{
+            background-color: rgb(58, 58, 58);
+            color: #fff;
+        }
 
-</style>
+    </style>

@@ -16,12 +16,12 @@ use yii\helpers\Url;
     </div>
     <div class="span8 float">
       	<ul class="footer-menu">
-        	<li><a href="<?= Url::to('/site/index')?>" class="current">Home Page</a>|</li>
-            <li><a href="index-1.html">about</a>|</li>
-            <li><a href="index-2.html">Services</a>|</li>
-            <li><a href="index-3.html">collections</a>|</li>
-            <li><a href="index-4.html">styles</a>|</li>
-            <li><a href="index-5.html">Contacts</a></li>
+            <li><a href="<?= Url::to('/site/index')?>" class="current">Главная</a>|</li>
+            <li><a href="<?= Url::to('/video/index')?>">Видео</a>|</li>
+            <li><a href="<?= Url::to('/video/tv')?>">Тв</a>|</li>
+            <li><a href="<?= Url::to('/image/index')?>">Фотографии</a>|</li>
+            <li><a href="<?= Url::to('/blog/index')?>">Статьи</a>|</li>
+            <li><a href="<?= Url::to('/admin/index')?>">Админка</a></li>
         </ul>
       	Shop  &copy;  <?= date("Y",time()); ?>  |   <a href="index-6.html">Privacy Policy</a> <!-- {%FOOTER_LINK} -->
       </div>

@@ -15,6 +15,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $descr
  * @property integer $created_at
  * @property integer $categoria
+ * @property integer $author_id
  *
  * @property VideoCategoria $categoria0
  */
@@ -45,9 +46,9 @@ public $updated_at;
     public function rules()
     {
         return [
-            [['youtube_id', 'title', 'categoria'], 'required'],
+            [['youtube_id', 'title'], 'required'],
             [['descr'], 'string'],
-            [['created_at', 'categoria'], 'integer'],
+            [['created_at', 'categoria','author_id'], 'integer'],
             [['youtube_id', 'title'], 'string', 'max' => 255]
         ];
     }
@@ -64,6 +65,7 @@ public $updated_at;
             'descr' => Yii::t('app', 'Descr'),
             'created_at' => Yii::t('app', 'Created At'),
             'categoria' => Yii::t('app', 'Categoria'),
+            'author_id' => Yii::t('app', 'author_id'),
         ];
     }
 
@@ -73,5 +75,12 @@ public $updated_at;
     public function getCategoria()
     {
         return $this->hasOne(VideoCategoria::className(), ['id' => 'categoria']);
+    }
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAuthor_id()
+    {
+        return $this->hasOne(Author::className(), ['id' => 'author_id']);
     }
 }

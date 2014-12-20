@@ -2,8 +2,9 @@
 
 use yii\helpers\Url;
 use common\models\VideoCategoria;
+use common\models\Author;
 
-
+$model_author = Author::find()->all();
 ?>
 
 <div class="container">
@@ -34,13 +35,9 @@ use common\models\VideoCategoria;
                                     <li class="active li-first"><a href="<?= Url::to('/site/default/index') ?>"><em class="hidden-phone"></em><span class="visible-phone">Home</span></a></li>
                                     <li class="sub-menu"><a href="<?= Url::to('/site/index-1') ?>">Авторы</a>
                                         <ul>
-                                            <li><a href="<?= Url::to('/site/default/index') ?>">Welcome Message</a></li>
-                                            <li><a href="#">Our Capabilities</a></li>
-                                            <li><a href="#">Advantages</a></li>
-                                            <li><a href="#">Work Team</a></li>
-                                            <li><a href="#">Partnership</a></li>
-                                            <li><a href="#">Our History</a></li>
-                                            <li><a href="#">Testimonials</a></li>
+                                            <?php foreach ($model_author as $author): ?>
+                                                <li><a href="<?= Url::to(['/video/show-author', 'id' => $author->id]) ?>"><?= $author->name ?></a></li>
+                                            <?php endforeach; ?>
                                         </ul>
                                     </li>
                                     <li class="sub-menu"><a href="<?= Url::to('/site/index-1') ?>">Видео</a>

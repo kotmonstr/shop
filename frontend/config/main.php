@@ -43,6 +43,10 @@ return [
         'video' => [
             'class' => 'app\modules\video\Module',
         ],
+        'video_categoria' => [
+            'class' => 'app\modules\video_categoria\Module',
+        ],
+        
     ],
     'params' => $params,
 ];

@@ -15,7 +15,7 @@ use yii\helpers\StringHelper;
                             <img class="a-<?= $video->youtube_id; ?>" style="position:relative;float:left;width:100%" src="http://img.youtube.com/vi/<?= $video->youtube_id; ?>/mqdefault.jpg" alt="" > 
                             <img class="b-<?= $video->youtube_id; ?>" src="/img/youtube.png" alt="" style="position:absolute;top: 50px;right: 142px;padding: 14px;width: 121px;display:none">
                             <div class="caption">
-                                <h5 style="color:#000"><?= StringHelper::truncate($video->title, 33); ?></h5>
+                                <h5 style="color:#000"><?= StringHelper::truncate($video->title, 37); ?></h5>
 
                             </div>
                         </div>

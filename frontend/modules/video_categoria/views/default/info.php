@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 use yii\helpers\Url;
 ?>
@@ -6,7 +6,7 @@ use yii\helpers\Url;
 
 <?php if (isset($imageSrc) && $imageSrc != ''): ?>
     <span id="yes" style="">1</span>
-    <input type="hidden" value="<?= $id ?>" name="id">
+    <input type="text" value="<?= $id ?>" name="id">
     <label class="control-label col-lg-4">Наименование</label>
     <div class=" col-lg-6">
         <input class="validate[required] form-control" type="text" value="<?= $title ?>" name="title"/>
@@ -27,7 +27,9 @@ use yii\helpers\Url;
         </center>
     </div>
 
-  
+    <div class="form-actions no-margin-bottom">
+        <input type="submit" value="Загрузить" class="btn btn-primary">
+    </div>
 <?php endif; ?>
 <style>
     label{

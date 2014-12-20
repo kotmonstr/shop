@@ -9,7 +9,6 @@ use common\models\Video;
 use yii\base\Response;
 use common\models\VideoCategoria;
 use yii\data\Pagination;
-use common\models\Author;
 
 /**
  * DefaultController implements the CRUD actions for Image model.
@@ -24,7 +23,7 @@ class DefaultController extends Controller {
         $model = Video::find()->where(['categoria' => $categoria_id]);
         //vd($model_video);
         $countQuery = clone $model;
-        $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => 12]);
+        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize' => 12]);
         $model_video = $model->offset($pages->offset)
                 ->limit($pages->limit)
                 ->orderBy('created_at Desc')
@@ -47,9 +46,8 @@ class DefaultController extends Controller {
         $pageName = 'Главная';
         $this->layout = '/adminka';
         $video_categoria = VideoCategoria::find()->all();
-        $authors = Author::find()->all();
 
-        return $this->render('index', ['video_categoria' => $video_categoria, 'pageName' => $pageName, 'authors' => $authors]);
+        return $this->render('index', ['video_categoria' => $video_categoria, 'pageName'=> $pageName]);
     }
 
     public function actionYoutube() {
@@ -73,7 +71,7 @@ class DefaultController extends Controller {
         $youtube = new Youtube(array('key' => 'AIzaSyBU4vsvP20CYdFuibdgTMOaZ10vt7JxV5c'));
         $video = $youtube->getVideoInfo($videoId);
         $title = $video->snippet->title;
-        $descr = $video->snippet->description;
+        $descr = $video->snippet->description;  
         $imageSrc = $video->snippet->thumbnails->medium->url;
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
@@ -92,10 +90,10 @@ class DefaultController extends Controller {
 
         $data = Yii::$app->request->post();
         //Поиск дубля
-        $duble = Video::find()->where(['youtube_id' => $data[id]])->one();
-        if (!empty($duble)) {
-            Yii::$app->session->setFlash('error', ",Ролик уже сущестивует!");
-            return $this->redirect('/video/index');
+        $duble = Video::find()->where(['youtube_id'=> $data[id] ])->one();
+        if(!empty($duble)){
+             Yii::$app->session->setFlash('error', ",Ролик уже сущестивует!");
+             return $this->redirect('/video/index');
         }
         //vd($data);
         $_model = new Video;
@@ -103,7 +101,6 @@ class DefaultController extends Controller {
         $_model->title = $data[title];
         $_model->descr = $data[descr];
         $_model->categoria = $data[categoria];
-        $_model->author_id = $data[author_id];
 
         //$_model->validate();
         //vd($_model->getErrors());
@@ -114,27 +111,6 @@ class DefaultController extends Controller {
             Yii::$app->session->setFlash('error', "Error!");
         }
         return $this->redirect('/video/index');
-    }
-
-    public function actionShowAuthor($id) {
-       
-      
-        //vd($categoria_id);
-        $model = Video::find()->where(['author_id' => $id]);
-        //vd($model_video);
-        $countQuery = clone $model;
-        $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => 12]);
-        $model_video = $model->offset($pages->offset)
-                ->limit($pages->limit)
-                ->orderBy('created_at Desc')
-                ->all();
-
-
-
-        return $this->render('view', [
-                    'model' => $model_video,
-                    'pages' => $pages,
-        ]);
     }
 
 }
