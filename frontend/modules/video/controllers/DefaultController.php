@@ -38,7 +38,11 @@ class DefaultController extends Controller {
         ]);
     }
 
-    public function actionTv() {
+    public function actionTv24() {
+
+        return $this->render('tv');
+    }
+    public function actionTv1() {
 
         return $this->render('tv');
     }

@@ -39,7 +39,7 @@ $model_author = Author::find()->all();
                                                 <li><a href="<?= Url::to(['/video/show-author', 'id' => $author->id]) ?>"><?= $author->name ?></a></li>
                                             <?php endforeach; ?>
                                         </ul>
-                                    </li>
+                                   </li>
                                     <li class="sub-menu"><a href="<?= Url::to('/site/index-1') ?>">Видео</a>
                                         <ul>
                                             <?php foreach (VideoCategoria::getModel() as $categoria): ?>
@@ -47,10 +47,16 @@ $model_author = Author::find()->all();
                                             <?php endforeach; ?>
                                         </ul>
                                     </li>
-                                    <li><a href="<?= Url::to('/video/tv') ?>">Tv</a></li>
+                                    <li class="sub-menu"><a href="<?= Url::to('/site/index-1') ?>">ТВ</a>
+                                        <ul>
+                                            <li><a href="<?= Url::to('/video/tv24') ?>">Росиия 24</a></li>
+                                            <li><a href="<?= Url::to('/video/tv1') ?>">Россия 1</a></li>
+                                        </ul>
+                                    </li>
+                              
 
 
-                                    <li><a href="index-5.html">Фоторгафии</a></li>
+                                    <li><a href="<?= Url::to('/image/view') ?>">Фоторгафии</a></li>
                                     <li><a href="<?= Url::to('/blog/index') ?>">Статьи</a></li>
                                     <li><a href="<?= Url::to('/video/youtube') ?>">Youtube</a></li>
                                     <?php if (!Yii::$app->user->isGuest) { ?><li><a href="<?= Url::to('/admin/index') ?>">Админка</a></li><?php } ?>

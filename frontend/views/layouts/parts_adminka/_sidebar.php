@@ -41,6 +41,11 @@ use yii\helpers\Url;
                         </a> 
                     </li>
                     <li class="">
+                        <a href="<?= Url::to('/image/upload') ?>">
+                            <i class="fa"></i><span class="link-title">&nbsp;Upload images</span> 
+                        </a> 
+                    </li>
+                    <li class="">
                         <a href="<?= Url::to('/image/index') ?>">
                             <i class="fa"></i><span class="link-title">&nbsp;Слайдер</span> 
                         </a> 

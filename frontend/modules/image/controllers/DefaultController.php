@@ -16,10 +16,7 @@ class DefaultController extends Controller {
 
     public $layout = '/adminka';
 
-    /**
-     * Lists all Image models.
-     * @return mixed
-     */
+
     public function actionIndex() {
 
         $searchModel = new ImageSearch();
@@ -30,6 +27,21 @@ class DefaultController extends Controller {
                     'dataProvider' => $dataProvider,
         ]);
     }
+    public function actionUpload() {
+
+       $model = new Image;
+
+        return $this->render('upload',['model'=> $model]);
+    }
+    
+    public function actionUploadSubmit() {
+
+       $data = Yii::$app->request->post();
+       vd($data);
+      
+    }
+    
+    
 
     /**
      * Displays a single Image model.
