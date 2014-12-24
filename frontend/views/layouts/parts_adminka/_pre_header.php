@@ -16,6 +16,7 @@ $this->registerCssFile('http://fonts.googleapis.com/css?family=Kaushan+Script:40
 
 
 $this->registerJsFile('/matis/lib/jquery/jquery.min.js', ['depends' => AppAsset::className()]);
+$this->registerJsFile('/js/custom/uploader.js', ['depends' => AppAsset::className()]);
 $this->registerJsFile('/matis/lib/modernizr/modernizr.min.js', ['depends' => AppAsset::className()]);
 $this->registerJsFile('/matis/lib/metismenu/metisMenu.min.js', ['depends' => AppAsset::className()]);
 //$this->registerJsFile('/matis/lib/screenfull/screenfull.js', ['depends' => AppAsset::className()]);

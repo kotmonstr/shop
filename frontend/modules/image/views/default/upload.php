@@ -1,5 +1,7 @@
 <?php
 
+//$this->registerJsFile('/js/custom/uploader.js');
+
 // with UI
 
 use dosamigos\fileupload\FileUploadUI;
@@ -8,23 +10,27 @@ use dosamigos\fileupload\FileUploadUI;
     'model' => new \common\models\Image,
     'attribute' => 'file_image',
     'url' => ['/image/upload-submit'],
-    'gallery' => false,
+    'gallery' => true,
     'fieldOptions' => [
             'accept' => 'image/*'
     ],
     'clientOptions' => [
-            'maxFileSize' => 2000000
+            'maxFileSize' => 99000000
     ],
+   
     // ... 
-    'clientEvents' => [
-            'fileuploaddone' => 'function(e, data) {
-                                    console.log(e);
-                                    console.log(data);
-                                }',
-            'fileuploadfail' => 'function(e, data) {
-                                    console.log(e);
-                                    console.log(data);
-                                }',
-    ],
+   
 ]);
 ?>
+
+<div id="progress">
+    <div class="bar" style="width: 0%;"></div>
+</div>
+
+<style>
+    
+    .bar {
+    height: 18px;
+    background: green;
+}
+    </style>

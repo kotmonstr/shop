@@ -27,22 +27,29 @@ class DefaultController extends Controller {
     public function actionUpload() {
 
        $model = new Image;
-
-        return $this->render('upload',['model'=> $model]);
+       return $this->render('upload',['model'=> $model]);
     }
     
     public function actionUploadSubmit() {
-        //vd($_POST);
-         $model = new Image();
+        $model = new Image();
 
         if (Yii::$app->request->isPost) {
-        
-     
             $model->file_image = UploadedFile::getInstance($model, 'file_image');
-            //vd($model->file_image );
-            $model->file_image->saveAs('upload/' . $model->file_image->baseName . '.' . $model->file_image->extension);
-          
-      
+            $model->file_image->saveAs('uploads/' . $model->file_image->baseName . '.' . $model->file_image->extension);
+            
+            
+            
+            
+            
+            
+            $full_name= $model->file_image->baseName . '.' . $model->file_image->extension;
+            //vd($full_name);
+            $_model = new Image();
+            $_model->name = $full_name;
+            //$_model->validate();
+            //vd($_model->getErrors());
+            $_model->save();
+            
                 Yii::$app->session->setFlash('success','Фоторгафии удачно сохранены');
             }else{
                  

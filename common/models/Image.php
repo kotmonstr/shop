@@ -15,6 +15,7 @@ class Image extends \yii\db\ActiveRecord
    
 
     public $file_image;
+   
     /**
      * @inheritdoc
      */
@@ -27,7 +28,7 @@ class Image extends \yii\db\ActiveRecord
       public function rules()
     {
         return [
-            [['file'], 'file'],
+            [['file_image'], 'file'],
         ];
     }
    
