@@ -3,6 +3,7 @@
 namespace common\models;
 use Yii;
 
+
 /**
  * This is the model class for table "{{%images}}".
  *
@@ -11,19 +12,9 @@ use Yii;
  */
 class Image extends \yii\db\ActiveRecord
 {
-    public function behaviors()
-{
-    return [
-       
-        [
-            'class' => 'mdm\upload\UploadBehavior',
-            'attribute' => 'file', // required, use to receive input file
-            'savedAttribute' => 'name', // optional, use to link model with saved file.
-            'uploadPath' => '@common/upload', // saved directory. default to '@runtime/upload'
-        ],
-    ];
-}
-    public $file;
+   
+
+    public $file_image;
     /**
      * @inheritdoc
      */
@@ -32,16 +23,14 @@ class Image extends \yii\db\ActiveRecord
         return '{{%image}}';
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function rules()
+  
+      public function rules()
     {
         return [
-            [['name'], 'required'],
-            [['name'], 'string', 'max' => 100]
+            [['file'], 'file'],
         ];
     }
+   
 
     /**
      * @inheritdoc

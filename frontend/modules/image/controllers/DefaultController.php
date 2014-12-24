@@ -7,11 +7,8 @@ use common\models\Image;
 use common\models\ImageSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
-/**
- * DefaultController implements the CRUD actions for Image model.
- */
 class DefaultController extends Controller {
 
     public $layout = '/adminka';
@@ -35,9 +32,25 @@ class DefaultController extends Controller {
     }
     
     public function actionUploadSubmit() {
+        //vd($_POST);
+         $model = new Image();
 
-       $data = Yii::$app->request->post();
-       vd($data);
+        if (Yii::$app->request->isPost) {
+        
+     
+            $model->file_image = UploadedFile::getInstance($model, 'file_image');
+            //vd($model->file_image );
+            $model->file_image->saveAs('upload/' . $model->file_image->baseName . '.' . $model->file_image->extension);
+          
+      
+                Yii::$app->session->setFlash('success','Фоторгафии удачно сохранены');
+            }else{
+                 
+            
+            Yii::$app->session->setFlash('error','Фоторгафии не удачно сохранены');
+        }
+        
+      return $this->redirect('upload');
       
     }
     
