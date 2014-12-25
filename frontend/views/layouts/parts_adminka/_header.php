@@ -19,7 +19,7 @@ use yii\helpers\Html;
                                 <span class="icon-bar"></span> 
                             </button>
                             <a href="<?= Url::to('/site/index'); ?>" class="navbar-brand">
-                                <img src="/matis/img/logo.png" alt="">
+                                <h5 class="logo"><span class="red">Kot</span>monstr</h5>
                             </a> 
                         </header>
                         <div class="topnav">
@@ -95,6 +95,15 @@ use yii\helpers\Html;
                     </div><!-- /.main-bar -->
                 </header><!-- /.head -->
             </div><!-- /#top -->
-         
+      <style>
+
+    .logo{
+        font-family: 'Kaushan Script', cursive;
+        font-size: 24px;
+    }
+    .red{
+        color:#CF3046;
+    }
+</style>   
        
     

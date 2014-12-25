@@ -15,7 +15,7 @@ use yii\helpers\Url;
                         <div class="media-body">
                             <h5 class="media-heading">Archie</h5>
                             <ul class="list-unstyled user-info">
-                                <li> <a href="">Administrator</a>  </li>
+                                <li> <a href=""><?= Yii::$app->user->identity->username ?></a>  </li>
                                 <li>Last Access :
                                     <br>
                                     <small>
@@ -35,16 +35,12 @@ use yii\helpers\Url;
                             <i class="fa"></i><span class="link-title">&nbsp;Dashboard</span> 
                         </a> 
                     </li>
-                    <li class="">
+                   <li class="">
                         <a href="<?= Url::to('/blog/show') ?>">
                             <i class="fa"></i><span class="link-title">&nbsp;Cтатьи</span> 
                         </a> 
                     </li>
-                    <li class="">
-                        <a href="<?= Url::to('/image/upload') ?>">
-                            <i class="fa"></i><span class="link-title">&nbsp;Upload images</span> 
-                        </a> 
-                    </li>
+                 
                     <li class="">
                         <a href="<?= Url::to('/image/index') ?>">
                             <i class="fa"></i><span class="link-title">&nbsp;Слайдер</span> 

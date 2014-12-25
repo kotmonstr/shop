@@ -7,38 +7,44 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\ImageSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Images';
+$this->title = 'Слайдер';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div id="content">
     <div class="outer">
         <div class="inner bg-light lter">
             <div id="collapse4" class="body">
-            <!--Begin Datatables-->
-<div class="image-index">
+                <!--Begin Datatables-->
+                <div class="image-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+                    <h1><?= Html::encode($this->title) ?></h1>
+                    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create Image', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+                    <p>
+                        <?= Html::a('Загрузить фотки', ['/image/default/upload'], ['class' => 'btn btn-success']) ?>
+                    </p>
+              
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+                    <?=
+                    GridView::widget([
+                        'dataProvider' => $dataProvider,
+                        'columns' => [
+                            'name',
+                            [
+                                'attribute' => 'name',
+                                'format' => 'html',
+                                'value' => function ($dataProvider) {
+                                    return '<img src='.'/uploads/' . $dataProvider->name . ' height="100px">';
+                                },
+                                'label' => 'Предпросмотр',
+                            ],
+                            ['class' => 'yii\grid\ActionColumn'],
+                        ],
+                    ]);
+                    ?>
 
-            'id',
-            'name',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
-
-</div>
-</div>
-</div>
-</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
