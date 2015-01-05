@@ -1,116 +1,123 @@
 <?php
 
-namespace app\modules\video\controllers;
+namespace app\modules\video_categoria\controllers;
+
 
 use Yii;
-use yii\web\Controller;
-use Madcoda\Youtube as MadcodaYoutube;
-use common\models\Video;
-use yii\base\Response;
 use common\models\VideoCategoria;
-use yii\data\Pagination;
+use common\models\VideoCategoriaSearch;
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
 
 /**
- * DefaultController implements the CRUD actions for Image model.
+ * DefaultController implements the CRUD actions for VideoCategoria model.
  */
-class DefaultController extends Controller {
+class DefaultController extends Controller
+{
+    public $layout='/adminka';
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['post'],
+                ],
+            ],
+        ];
+    }
 
-    public $layout = '/blog';
+    /**
+     * Lists all VideoCategoria models.
+     * @return mixed
+     */
+    public function actionIndex()
+    {
+        $searchModel = new VideoCategoriaSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-    public function actionView() {
-        $categoria_id = Yii::$app->request->get('categoria_id');
-        //vd($categoria_id);
-        $model = Video::find()->where(['categoria' => $categoria_id]);
-        //vd($model_video);
-        $countQuery = clone $model;
-        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize' => 12]);
-        $model_video = $model->offset($pages->offset)
-                ->limit($pages->limit)
-                ->orderBy('created_at Desc')
-                ->all();
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
 
-
-
+    /**
+     * Displays a single VideoCategoria model.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionView($id)
+    {
         return $this->render('view', [
-                    'model' => $model_video,
-                    'pages' => $pages,
+            'model' => $this->findModel($id),
         ]);
     }
 
-    public function actionTv() {
+    /**
+     * Creates a new VideoCategoria model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionCreate()
+    {
+        $model = new VideoCategoria();
 
-        return $this->render('tv');
-    }
-
-    public function actionIndex() {
-        $pageName = 'Главная';
-        $this->layout = '/adminka';
-        $video_categoria = VideoCategoria::find()->all();
-
-        return $this->render('index', ['video_categoria' => $video_categoria, 'pageName'=> $pageName]);
-    }
-
-    public function actionYoutube() {
-
-        $youtube = new Youtube(array('key' => 'AIzaSyBU4vsvP20CYdFuibdgTMOaZ10vt7JxV5c'));
-        $video = $youtube->getVideoInfo('ez5M__82h1k');
-        vd($video);
-    }
-
-    public function actionSendYoutubeCode() {
-
-        $url = trim(Yii::$app->request->post('code'));
-
-        function getYouTubeIdFromURL($url) {
-            $url_string = parse_url($url, PHP_URL_QUERY);
-            parse_str($url_string, $args);
-            return isset($args['v']) ? $args['v'] : false;
-        }
-
-        $videoId = getYouTubeIdFromURL($url);
-        $youtube = new Youtube(array('key' => 'AIzaSyBU4vsvP20CYdFuibdgTMOaZ10vt7JxV5c'));
-        $video = $youtube->getVideoInfo($videoId);
-        $title = $video->snippet->title;
-        $descr = $video->snippet->description;  
-        $imageSrc = $video->snippet->thumbnails->medium->url;
-        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-
-
-
-
-        return $this->renderAjax('info', [ 'imageSrc' => $imageSrc,
-                    'title' => $title,
-                    'descr' => $descr,
-                    'preview' => $preview,
-                    'id' => $video->id,
-        ]);
-    }
-
-    public function actionAdd() {
-
-        $data = Yii::$app->request->post();
-        //Поиск дубля
-        $duble = Video::find()->where(['youtube_id'=> $data[id] ])->one();
-        if(!empty($duble)){
-             Yii::$app->session->setFlash('error', ",Ролик уже сущестивует!");
-             return $this->redirect('/video/index');
-        }
-        //vd($data);
-        $_model = new Video;
-        $_model->youtube_id = $data[id];
-        $_model->title = $data[title];
-        $_model->descr = $data[descr];
-        $_model->categoria = $data[categoria];
-
-        //$_model->validate();
-        //vd($_model->getErrors());
-
-        if ($_model->save()) {
-            Yii::$app->session->setFlash('success', "Data saved!");
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            Yii::$app->session->setFlash('error', "Error!");
+            return $this->render('create', [
+                'model' => $model,
+            ]);
         }
-        return $this->redirect('/video/index');
     }
 
+    /**
+     * Updates an existing VideoCategoria model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionUpdate($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    /**
+     * Deletes an existing VideoCategoria model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionDelete($id)
+    {
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
+    }
+
+    /**
+     * Finds the VideoCategoria model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return VideoCategoria the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = VideoCategoria::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
 }

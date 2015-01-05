@@ -3,6 +3,7 @@ $this->registerJsFile('/js/custom/flash.js');
 
 use yii\widgets\LinkPager;
 use yii\helpers\StringHelper;
+
 ?>
 <section id="content">
     <div class="sub-content">
@@ -10,6 +11,9 @@ use yii\helpers\StringHelper;
          
             <div class="row" style="">
                 <?php foreach ($model as $video): ?>
+                <?php 
+             
+                if($video->title !=''){?>
                     <div class="col-sm-6 col-md-4 video-before-click"  onmouseover="hideImage('<?= $video->youtube_id; ?>')"  onmouseleave="showImage('<?= $video->youtube_id; ?>')">
                         <div class="thumbnail target-<?= $video->youtube_id ?>" onclick="ChangeVideo('<?= $video->youtube_id ?>')">
                             <img class="a-<?= $video->youtube_id; ?>" style="position:relative;float:left;width:100%" src="http://img.youtube.com/vi/<?= $video->youtube_id; ?>/mqdefault.jpg" alt="" > 
@@ -20,6 +24,7 @@ use yii\helpers\StringHelper;
                             </div>
                         </div>
                     </div>
+                <?php } ?>
                 <?php endforeach; ?>
             </div>
             <?php
@@ -54,5 +59,7 @@ use yii\helpers\StringHelper;
     
 
 </style>
+
+
 
 

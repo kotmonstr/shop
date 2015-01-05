@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Image;
+use common\models\VideoCategoria;
 
 /**
- * ImageSearch represents the model behind the search form about `common\models\Image`.
+ * VideoCategoriaSearch represents the model behind the search form about `common\models\VideoCategoria`.
  */
-class ImageSearch extends Image
+class VideoCategoriaSearch extends VideoCategoria
 {
     /**
      * @inheritdoc
@@ -41,13 +41,13 @@ class ImageSearch extends Image
      */
     public function search($params)
     {
-        $query = Image::find();
+        $query = VideoCategoria::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
 
-        if (!($this->load($params) && $this->validate())) {
+        if ($this->load($params) && !$this->validate()) {
             return $dataProvider;
         }
 

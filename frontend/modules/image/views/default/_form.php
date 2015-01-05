@@ -7,7 +7,10 @@ use yii\widgets\ActiveForm;
 /* @var $model common\models\Image */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-
+<div id="content">
+    <div class="outer">
+        <div class="inner bg-light lter">
+            <div id="collapse4" class="body">
 <div class="image-form">
 
     <?php $form = ActiveForm::begin(); ?>
@@ -20,4 +23,8 @@ use yii\widgets\ActiveForm;
 
     <?php ActiveForm::end(); ?>
 
+</div>
+</div>
+</div>
+</div>
 </div>

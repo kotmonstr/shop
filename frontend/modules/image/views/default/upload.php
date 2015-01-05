@@ -13,7 +13,7 @@ use dosamigos\fileupload\FileUploadUI;
                 <div class="image-index">
                     <?=
                     FileUploadUI::widget([
-                        'model' => new \common\models\Image,
+                        'model' => new \common\models\ImageSlider,
                         'attribute' => 'file_image',
                         'url' => ['/image/upload-submit'],
                         'gallery' => false,

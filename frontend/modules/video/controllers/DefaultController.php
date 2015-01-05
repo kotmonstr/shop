@@ -42,13 +42,14 @@ class DefaultController extends Controller {
 
         return $this->render('tv');
     }
+
     public function actionTv1() {
 
         return $this->render('tv');
     }
 
     public function actionIndex() {
-        $pageName = 'Главная';
+        $pageName = 'Р“Р»Р°РІРЅР°СЏ';
         $this->layout = '/adminka';
         $video_categoria = VideoCategoria::find()->all();
         $authors = Author::find()->all();
@@ -59,21 +60,19 @@ class DefaultController extends Controller {
     public function actionYoutube() {
 
         $youtube = new Youtube(array('key' => 'AIzaSyBU4vsvP20CYdFuibdgTMOaZ10vt7JxV5c'));
-        $video = $youtube->getVideoInfo('ez5M__82h1k');
+        $video = $youtube->getVideoInfo('fDmSzr2u5WU');
         vd($video);
     }
 
     public function actionSendYoutubeCode() {
 
-        $url = trim(Yii::$app->request->post('code'));
+        $url = Yii::$app->request->post('code');
+      
 
-        function getYouTubeIdFromURL($url) {
-            $url_string = parse_url($url, PHP_URL_QUERY);
-            parse_str($url_string, $args);
-            return isset($args['v']) ? $args['v'] : false;
-        }
 
-        $videoId = getYouTubeIdFromURL($url);
+        $videoId = $url;
+        //$videoId = $this->parse_youtube_url($url);
+        //$videoId = $this->getYouTubeIdFromURL($url);
         $youtube = new Youtube(array('key' => 'AIzaSyBU4vsvP20CYdFuibdgTMOaZ10vt7JxV5c'));
         $video = $youtube->getVideoInfo($videoId);
         $title = $video->snippet->title;
@@ -95,10 +94,10 @@ class DefaultController extends Controller {
     public function actionAdd() {
 
         $data = Yii::$app->request->post();
-        //Поиск дубля
+        //РџРѕРёСЃРє РґСѓР±Р»СЏ
         $duble = Video::find()->where(['youtube_id' => $data[id]])->one();
         if (!empty($duble)) {
-            Yii::$app->session->setFlash('error', ",Ролик уже сущестивует!");
+            Yii::$app->session->setFlash('error', ",Р РѕР»РёРє СѓР¶Рµ СЃСѓС‰РµСЃС‚РёРІСѓРµС‚!");
             return $this->redirect('/video/index');
         }
         //vd($data);
@@ -121,8 +120,8 @@ class DefaultController extends Controller {
     }
 
     public function actionShowAuthor($id) {
-       
-      
+
+
         //vd($categoria_id);
         $model = Video::find()->where(['author_id' => $id]);
         //vd($model_video);
@@ -139,6 +138,53 @@ class DefaultController extends Controller {
                     'model' => $model_video,
                     'pages' => $pages,
         ]);
+    }
+
+    public static function getYouTubeIdFromURL($url) {
+//            $url_string = parse_url($url, PHP_URL_QUERY);
+//            parse_str($url_string, $args);
+//            return isset($args['v']) ? $args['v'] : false;
+
+        $videoid = preg_replace("#[&\?].+$#", "", preg_replace("#http://(?:www\.)?youtu\.?be(?:\.com)?/(embed/|watch\?v=|\?v=|v/|e/|.+/|watch.*v=|)#i", "", $url));
+        return $videoid;
+    }
+
+    public static function parse_youtube_url($url, $return = 'embed', $width = '', $height = '', $rel = 0) {
+        $urls = parse_url($url);
+
+        //expect url is http://youtu.be/abcd, where abcd is video iD
+        if ($urls['host'] == 'youtu.be') {
+            $id = ltrim($urls['path'], '/');
+        }
+        //expect  url is http://www.youtube.com/embed/abcd 
+        else if (strpos($urls['path'], 'embed') == 1) {
+            $id = end(explode('/', $urls['path']));
+        }
+        //expect url is abcd only 
+        else if (strpos($url, '/') === false) {
+            $id = $url;
+        }
+        //expect url is http://www.youtube.com/watch?v=abcd 
+        else {
+            parse_str($urls['query']);
+            $id = $v;
+        }
+        //return embed iframe 
+        if ($return == 'embed') {
+            return '<iframe width="' . ($width ? $width : 560) . '" height="' . ($height ? $height : 349) . '" src="http://www.youtube.com/embed/' . $id . '?rel=' . $rel . '" frameborder="0" allowfullscreen>';
+        }
+        //return normal thumb 
+        else if ($return == 'thumb') {
+            return 'http://i1.ytimg.com/vi/' . $id . '/default.jpg';
+        }
+        //return hqthumb 
+        else if ($return == 'hqthumb') {
+            return 'http://i1.ytimg.com/vi/' . $id . '/hqdefault.jpg';
+        }
+        // else return id 
+        else {
+            return $id;
+        }
     }
 
 }

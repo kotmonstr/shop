@@ -1,54 +1,27 @@
 <?php
+/**
+ * @link http://www.yiiframework.com/
+ * @copyright Copyright (c) 2008 Yii Software LLC
+ * @license http://www.yiiframework.com/license/
+ */
 
 namespace common\models;
-use Yii;
-
 
 /**
- * This is the model class for table "{{%images}}".
+ * Image implements most commonly used image manipulation functions using the [Imagine library](http://imagine.readthedocs.org/).
  *
- * @property string $id
- * @property string $name
+ * Example of use:
+ *
+ * ~~~php
+ * // generate a thumbnail image
+ * Image::thumbnail('@webroot/img/test-image.jpg', 120, 120)
+ *     ->save(Yii::getAlias('@runtime/thumb-test-image.jpg'), ['quality' => 50]);
+ * ~~~
+ *
+ * @author Antonio Ramirez <amigo.cobos@gmail.com>
+ * @author Qiang Xue <qiang.xue@gmail.com>
+ * @since 2.0
  */
-class Image extends \yii\db\ActiveRecord
+class Image extends BaseImage
 {
-   
-
-    public $file_image;
-   
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return '{{%image}}';
-    }
-
-  
-      public function rules()
-    {
-        return [
-            [['file_image'], 'file'],
-        ];
-    }
-   
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => Yii::t('app', 'ID'),
-            'name' => Yii::t('app', 'Имя'),
-        ];
-    }
-    /**
-     * return model
-     */
-    public static function getmodel()
-    {
-        
-        return $model = Image::find()->all();
-    }
 }

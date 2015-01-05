@@ -3,20 +3,22 @@
 namespace app\modules\image\controllers;
 
 use Yii;
-use common\models\Image;
-use common\models\ImageSearch;
+use common\models\ImageSlider;
+use common\models\ImageSliderSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
+//use yii\imagine\BaseImage;
+use Imagine\Image\ManipulatorInterface;
+use yii\imagine\Image;
 
 class DefaultController extends Controller {
 
     public $layout = '/adminka';
 
-
     public function actionIndex() {
 
-        $searchModel = new ImageSearch();
+        $searchModel = new ImageSliderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -24,44 +26,51 @@ class DefaultController extends Controller {
                     'dataProvider' => $dataProvider,
         ]);
     }
+
     public function actionUpload() {
 
-       $model = new Image;
-       return $this->render('upload',['model'=> $model]);
+        $model = new ImageSlider;
+        return $this->render('upload', ['model' => $model]);
     }
-    
+
     public function actionUploadSubmit() {
-        $model = new Image();
+        $model = new ImageSlider;
 
         if (Yii::$app->request->isPost) {
             $model->file_image = UploadedFile::getInstance($model, 'file_image');
             $model->file_image->saveAs('uploads/' . $model->file_image->baseName . '.' . $model->file_image->extension);
-            
-            
-            
-            
-            
-            
-            $full_name= $model->file_image->baseName . '.' . $model->file_image->extension;
+
+
+
+
+
+
+            $full_name = $model->file_image->baseName . '.' . $model->file_image->extension;
             //vd($full_name);
-            $_model = new Image();
+            $_model = new \common\models\ImageSlider;
             $_model->name = $full_name;
             //$_model->validate();
             //vd($_model->getErrors());
             $_model->save();
-            
-                Yii::$app->session->setFlash('success','Фоторгафии удачно сохранены');
-            }else{
-                 
-            
-            Yii::$app->session->setFlash('error','Фоторгафии не удачно сохранены');
+
+
+//            Image::crop(Yii::getAlias('@frontend') . '/web/uploads/' . $full_name, 2048, 1200, [0, 0])
+//                    ->save(Yii::getAlias('@frontend') . '/web/uploads2/' . $full_name, ['quality' => 80]);
+
+     
+
+            Image::thumbnail(Yii::getAlias('@frontend') . '/web/uploads/' . $full_name, 1200, 500)
+                    ->save(Yii::getAlias(Yii::getAlias('@frontend') . '/web/thumbs/' . $full_name), ['quality' => 80]);
+
+            Yii::$app->session->setFlash('success', 'Фоторгафии удачно сохранены');
+        } else {
+
+
+            Yii::$app->session->setFlash('error', 'Фоторгафии не удачно сохранены');
         }
-        
-      return $this->redirect('upload');
-      
+
+        return $this->redirect('upload');
     }
-    
-    
 
     /**
      * Displays a single Image model.
@@ -138,7 +147,7 @@ class DefaultController extends Controller {
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id) {
-        if (($model = Image::findOne($id)) !== null) {
+        if (($model = ImageSlider::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

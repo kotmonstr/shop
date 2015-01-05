@@ -13,7 +13,7 @@ use yii\helpers\Url;
                             <span class="label label-danger user-label">16</span> 
                         </a> 
                         <div class="media-body">
-                            <h5 class="media-heading">Archie</h5>
+                            <h5 class="media-heading"><?= Yii::$app->user->identity->username ?></h5>
                             <ul class="list-unstyled user-info">
                                 <li> <a href=""><?= Yii::$app->user->identity->username ?></a>  </li>
                                 <li>Last Access :
@@ -30,11 +30,7 @@ use yii\helpers\Url;
                 <ul id="menu" class="dker">
                     <li class="nav-header">Menu</li>
                     <li class="nav-divider"></li>
-                    <li class="">
-                        <a href="dashboard.html">
-                            <i class="fa"></i><span class="link-title">&nbsp;Dashboard</span> 
-                        </a> 
-                    </li>
+                 
                    <li class="">
                         <a href="<?= Url::to('/blog/show') ?>">
                             <i class="fa"></i><span class="link-title">&nbsp;Cтатьи</span> 
@@ -49,6 +45,12 @@ use yii\helpers\Url;
                     <li class="">
                         <a href="<?= Url::to('/video/index') ?>">
                             <i class="fa"></i><span class="link-title">&nbsp;Youtube</span> 
+                        </a> 
+                    </li>
+       
+                    <li class="">
+                        <a href="<?= Url::to('/video_categoria/index') ?>">
+                            <i class="fa"></i><span class="link-title">&nbsp;Категории видео</span> 
                         </a> 
                     </li>
        

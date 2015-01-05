@@ -1,8 +1,8 @@
 <?php
 
-use common\models\Image;
+use common\models\ImageSlider;
 
-$model = Image::getmodel();
+$model = ImageSlider::getmodel();
 ?>    
 
 
@@ -10,7 +10,7 @@ $model = Image::getmodel();
     <div class="camera_wrap">
 <?php foreach ($model as $image): ?>
             <!--  <div data-src="/img/slide4.jpg"></div> -->
-            <div data-src="<?= $baseDir . '/uploads/' . $image->name ?>"></div>
+            <div data-src="<?= $baseDir . '/thumbs/' . $image->name ?>"></div>
 
 
 <?php endforeach ?>
