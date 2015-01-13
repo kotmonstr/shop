@@ -53,6 +53,11 @@ use yii\helpers\Url;
                             <i class="fa"></i><span class="link-title">&nbsp;Категории видео</span> 
                         </a> 
                     </li>
+                    <li class="">
+                        <a href="<?= Url::to('/author/index') ?>">
+                            <i class="fa"></i><span class="link-title">&nbsp;Авторы</span> 
+                        </a> 
+                    </li>
        
                     
           

@@ -1,21 +1,19 @@
 <?php
 
-namespace app\modules\video_categoria\controllers;
-
+namespace app\modules\author\controllers;
 
 use Yii;
-use common\models\VideoCategoria;
-use common\models\VideoCategoriaSearch;
+use common\models\Author;
+use common\models\AuthorSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * DefaultController implements the CRUD actions for VideoCategoria model.
+ * DefaultController implements the CRUD actions for Author model.
  */
 class DefaultController extends Controller
 {
-    public $layout='/adminka';
     public function behaviors()
     {
         return [
@@ -28,13 +26,10 @@ class DefaultController extends Controller
         ];
     }
 
-    /**
-     * Lists all VideoCategoria models.
-     * @return mixed
-     */
+   public $layout='/adminka';
     public function actionIndex()
     {
-        $searchModel = new VideoCategoriaSearch();
+        $searchModel = new AuthorSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -44,7 +39,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * Displays a single VideoCategoria model.
+     * Displays a single Author model.
      * @param integer $id
      * @return mixed
      */
@@ -56,16 +51,16 @@ class DefaultController extends Controller
     }
 
     /**
-     * Creates a new VideoCategoria model.
+     * Creates a new Author model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new VideoCategoria();
+        $model = new Author();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect('index');
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -74,7 +69,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * Updates an existing VideoCategoria model.
+     * Updates an existing Author model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -84,7 +79,7 @@ class DefaultController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect('index');
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -93,7 +88,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * Deletes an existing VideoCategoria model.
+     * Deletes an existing Author model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -106,15 +101,15 @@ class DefaultController extends Controller
     }
 
     /**
-     * Finds the VideoCategoria model based on its primary key value.
+     * Finds the Author model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return VideoCategoria the loaded model
+     * @return Author the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = VideoCategoria::findOne($id)) !== null) {
+        if (($model = Author::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

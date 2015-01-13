@@ -46,6 +46,9 @@ return [
         'video_categoria' => [
             'class' => 'app\modules\video_categoria\Module',
         ],
+        'author' => [
+            'class' => 'app\modules\author\Module',
+        ],
         
     ],
     'params' => $params,

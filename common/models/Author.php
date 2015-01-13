@@ -29,7 +29,7 @@ class Author extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'descr'], 'required'],
+            [['name'], 'required'],
             [['descr'], 'string'],
             [['name'], 'string', 'max' => 255]
         ];
