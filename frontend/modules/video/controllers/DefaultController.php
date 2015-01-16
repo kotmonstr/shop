@@ -43,6 +43,36 @@ class DefaultController extends Controller {
         return $this->render('tv');
     }
 
+    public function actionDelete() {
+        $arrResult=[];
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $id = Yii::$app->request->post('id');
+        //vd($id);
+        $model = Video::find()->where(['youtube_id' => $id])->one();
+        if (!empty($model)) {
+            $model->delete();
+            $arrResult['result']='ok';
+        }else{
+           $arrResult['result']='error'; 
+        }
+             
+        return $arrResult;
+    }
+
+    public function actionPreview() {
+        $this->layout = '/adminka';
+        $model = Video::find();
+        //vd($model_video);
+        $countQuery = clone $model;
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => 24]);
+        $model_video = $model->offset($pages->offset)
+                ->limit($pages->limit)
+                ->orderBy('created_at Desc')
+                ->all();
+
+        return $this->render('preview', ['model' => $model_video, 'pages' => $pages]);
+    }
+
     public function actionTv1() {
 
         return $this->render('tv');
@@ -67,7 +97,7 @@ class DefaultController extends Controller {
     public function actionSendYoutubeCode() {
 
         $url = Yii::$app->request->post('code');
-      
+
 
 
         $videoId = $url;

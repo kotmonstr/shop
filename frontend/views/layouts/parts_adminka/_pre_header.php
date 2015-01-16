@@ -25,6 +25,7 @@ $this->registerJsFile('/matis/lib/metismenu/metisMenu.min.js', ['depends' => App
 //$this->registerJsFile('/matis/js/app.min.js', ['depends' => AppAsset::className()]);
 //$this->registerJsFile('/matis/js/style-switcher.min.js', ['depends' => AppAsset::className()]);
 $this->registerJsFile('/js/youtube.js', ['depends' => AppAsset::className()]);
+$this->registerJsFile('/js/custom/flash.js', ['depends' => AppAsset::className()]);
 
 
 

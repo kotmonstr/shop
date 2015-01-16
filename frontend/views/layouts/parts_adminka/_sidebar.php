@@ -49,6 +49,11 @@ use yii\helpers\Url;
                     </li>
        
                     <li class="">
+                        <a href="<?= Url::to('/video/preview') ?>">
+                            <i class="fa"></i><span class="link-title">&nbsp; Видео</span> 
+                        </a> 
+                    </li>
+                    <li class="">
                         <a href="<?= Url::to('/video_categoria/index') ?>">
                             <i class="fa"></i><span class="link-title">&nbsp;Категории видео</span> 
                         </a> 
