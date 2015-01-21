@@ -10,23 +10,53 @@ use yii\data\Pagination;
 
 class DefaultController extends Controller {
 
+    public function actions() {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
+            'image-upload' => [
+                'class' => 'vova07\imperavi\actions\UploadAction',
+                'url' => '/images/blog/', // Directory URL address, where files are stored.
+                'path' => '@webroot/images/blog/' // Or absolute path to directory where files are stored.
+            ],
+            'images-get' => [
+                'class' => 'vova07\imperavi\actions\GetAction',
+                'url' => '/images/blog/', // Directory URL address, where files are stored.
+                'path' => '@webroot/images/blog/', // Or absolute path to directory where files are stored.
+                'type' => '0',
+            ],
+            'files-get' => [
+                'class' => 'vova07\imperavi\actions\GetAction',
+                'url' => '/files/blog/', // Directory URL address, where files are stored.
+                'path' => '@webroot/files/blog/', // Or absolute path to directory where files are stored.
+                'type' => '1', //GetAction::TYPE_FILES,
+            ],
+            'file-upload' => [
+                'class' => 'vova07\imperavi\actions\UploadAction',
+                'url' => '/files/blog/', // Directory URL address, where files are stored.
+                'path' => '@webroot/files/blog/' // Or absolute path to directory where files are stored.
+            ],
+        ];
+    }
+
     public $layout = '/blog';
 
     public function actionIndex() {
         //$this->layout = '/blog';
         // Вывести список статей
 
-     
-        $query = Blog::find();
-        
-        $countQuery = clone $query;
-        $pages = new Pagination(['totalCount' => $countQuery->count(),'defaultPageSize'=> 2]);
-        $models = $query->offset($pages->offset)
-        ->limit($pages->limit)
-        ->all();
 
-        return $this->render('index', [  'model' => $models,
-         'pages' => $pages]);
+        $query = Blog::find();
+
+        $countQuery = clone $query;
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => 2]);
+        $models = $query->offset($pages->offset)
+                ->limit($pages->limit)
+                ->all();
+
+        return $this->render('index', [ 'model' => $models,
+                    'pages' => $pages]);
     }
 
     public function actionView() {

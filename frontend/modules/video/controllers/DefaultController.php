@@ -42,20 +42,24 @@ class DefaultController extends Controller {
 
         return $this->render('tv');
     }
+    public function action5canal() {
+
+        return $this->render('5canal');
+    }
 
     public function actionDelete() {
-        $arrResult=[];
+        $arrResult = [];
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $id = Yii::$app->request->post('id');
         //vd($id);
         $model = Video::find()->where(['youtube_id' => $id])->one();
         if (!empty($model)) {
             $model->delete();
-            $arrResult['result']='ok';
-        }else{
-           $arrResult['result']='error'; 
+            $arrResult['result'] = 'ok';
+        } else {
+            $arrResult['result'] = 'error';
         }
-             
+
         return $arrResult;
     }
 
@@ -69,8 +73,8 @@ class DefaultController extends Controller {
                 ->limit($pages->limit)
                 ->orderBy('created_at Desc')
                 ->all();
-
-        return $this->render('preview', ['model' => $model_video, 'pages' => $pages]);
+        $model_categoria = VideoCategoria::find()->all();
+        return $this->render('preview', ['model' => $model_video, 'pages' => $pages, 'model_categoria' => $model_categoria]);
     }
 
     public function actionTv1() {
@@ -215,6 +219,34 @@ class DefaultController extends Controller {
         else {
             return $id;
         }
+    }
+
+    public function actionGetVideoByCategoriaId() {
+                           
+        $id = Yii::$app->request->post('id');
+            if($id =='00'){
+                $model = Video::find()->all();
+            }else{
+                $model = Video::find()->where(['categoria' => $id])->all();
+            }
+        
+        //vd($model);
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        return $this->renderAjax('get-video-by-categoria-id', [ 'model' => $model]);
+    }
+    public function actionGetVideoByTime() {
+                           
+        $time = Yii::$app->request->post('time');
+        //vd($time);
+            if($time == 0){
+                $model = Video::find()->orderBy('created_at DESC')->all();
+            }else{
+                $model = Video::find()->orderBy('created_at ASC')->all();
+            }
+        
+        //vd($model);
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        return $this->renderAjax('get-video-by-categoria-id', [ 'model' => $model]);
     }
 
 }

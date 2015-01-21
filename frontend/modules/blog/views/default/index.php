@@ -33,4 +33,9 @@ use yii\widgets\LinkPager;
         </div>
     </div>
 </section>
-
+<style>
+    body{
+        //color:#fff!important;
+        //font-size: 14px;
+    }
+    </style>

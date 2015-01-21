@@ -5,6 +5,9 @@ use common\models\VideoCategoria;
 use common\models\Author;
 
 $model_author = Author::find()->all();
+$url = Yii::$app->controller->module->id . '/'.  Yii::$app->controller->action->id;
+$module = Yii::$app->controller->module->id;
+//vd($url);
 ?>
 
 <div class="container">
@@ -29,35 +32,37 @@ $model_author = Author::find()->all();
                 <div class="navbar navbar_ clearfix muu" style="">
                     <div class="navbar-inner navbar-inner_">
                         <div class="container">
-                            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse_">MENU</a>                                                   
+                            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse_">Меню</a>                                                   
                             <div class="nav-collapse nav-collapse_ " >
                                 <ul class="nav sf-menu">
-                                    <li class="active li-first"><a href="<?= Url::to('/site/default/index') ?>"><em class="hidden-phone"></em><span class="visible-phone">Home</span></a></li>
-                                    <li class="sub-menu"><a href="<?= Url::to('/site/index-1') ?>">Авторы</a>
+                                    <li class="li-first <?php if($url == 'site/index'){echo"active";} ?>"><a href="<?= Url::to('/site/default/index') ?>"><em class="hidden-phone"></em><span class="visible-phone">Home</span></a></li>
+                                    <li class="sub-menu <?php if($url == 'video/show-author'){echo"active";} ?>"><a href="javascript:void(0);">Авторы</a>
                                         <ul>
                                             <?php foreach ($model_author as $author): ?>
                                                 <li><a href="<?= Url::to(['/video/show-author', 'id' => $author->id]) ?>"><?= $author->name ?></a></li>
                                             <?php endforeach; ?>
                                         </ul>
                                    </li>
-                                    <li class="sub-menu"><a href="<?= Url::to('/site/index-1') ?>">Видео</a>
+                                    <li class="sub-menu <?php if($url == 'video/view'){echo"active";} ?>"><a href="javascript:void(0);">Видео</a>
                                         <ul>
                                             <?php foreach (VideoCategoria::getModel() as $categoria): ?>
                                                 <li><a href="<?= Url::to(['/video/view', 'categoria_id' => $categoria->id]); ?>"><?= $categoria->name ?></a></li>                                         
                                             <?php endforeach; ?>
                                         </ul>
                                     </li>
-                                    <li class="sub-menu"><a href="<?= Url::to('/site/index-1') ?>">ТВ</a>
+                                    <li class="sub-menu <?php if($url == 'video/tv24' || $url == 'video/tv1' || $url == 'video/5canal'){echo"active";} ?>"><a href="javascript:void(0);">ТВ</a>
                                         <ul>
-                                            <li><a href="<?= Url::to('/video/tv24') ?>">Росиия 24</a></li>
-                                            <li><a href="<?= Url::to('/video/tv1') ?>">Россия 1</a></li>
+                                            <li><a href="<?= Url::to('/video/tv24') ?>">РОССИЯ 24</a></li>
+                                            <li><a href="<?= Url::to('/video/tv1') ?>">РОССИЯ 1</a></li>
+                                            <li><a href="<?= Url::to('/video/5canal') ?>">5 КАНАЛ'</a></li>
                                         </ul>
                                     </li>
                               
 
 
-                                    <li><a href="<?= Url::to('/image/view') ?>">Фоторгафии</a></li>
-                                    <li><a href="<?= Url::to('/blog/index') ?>">Статьи</a></li>
+                                    <li><a href="<?= Url::to('/image/view') ?>">Новости RSS</a></li>
+                                    <li><a href="<?= Url::to('/image/view') ?>">Фотографиии</a></li>
+                                    <li class="<?php if($url == 'blog/index'){echo"active";} ?>"><a href="<?= Url::to('/blog/index') ?>">Новости</a></li>
                                     <li><a href="<?= Url::to('/video/youtube') ?>">Youtube</a></li>
                                     <?php if (!Yii::$app->user->isGuest) { ?><li><a href="<?= Url::to('/admin/index') ?>">Админка</a></li><?php } ?>
                                     <?php if (Yii::$app->user->isGuest) { ?>

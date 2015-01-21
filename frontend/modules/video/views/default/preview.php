@@ -6,8 +6,31 @@ use yii\helpers\StringHelper;
 <section id="content">
     <div class="sub-content">
         <div class="container">
+            <div class="row">
+                <div class="col-md-3" style="">
+                      Сортировка по категории:
+                    <select id="dropdown-categoria" class="form-control" style="width:200px" onchange="GetVideoByCategiryId($())">
+                        <option value="0"><?= 'Выбери ...'; ?></option>
+                        <option value="00"><?= 'Все'; ?></option>
+                        <?php foreach ($model_categoria as $video): ?>
+                            <option value="<?= $video->id ?>" > <?= $video->name ?> </option>
 
-            <div class="row" style="">
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="col-md-3" style="">
+                    Сортировка по дате:
+                    <select id="dropdown-time" class="form-control" style="width:200px" onchange="GetVideoByTime()">
+                        <option value="0"><?= 'UP'; ?></option>
+                        <option value="1"><?= 'Down'; ?></option>
+
+                    </select>
+                </div>
+               
+
+            </div>
+
+            <div id="target" class="row" style="">
                 <?php foreach ($model as $video): ?>
                     <?php if ($video->title != '') { ?>
 
