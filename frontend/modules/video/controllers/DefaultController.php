@@ -79,7 +79,7 @@ class DefaultController extends Controller {
 
     public function actionTv1() {
 
-        return $this->render('tv');
+        return $this->render('tv1');
     }
 
     public function actionIndex() {

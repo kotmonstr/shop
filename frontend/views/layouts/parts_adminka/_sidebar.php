@@ -28,7 +28,7 @@ use yii\helpers\Url;
 
                 <!-- #menu -->
                 <ul id="menu" class="dker">
-                    <li class="nav-header">Menu</li>
+                    <li class="nav-header"></li>
                     <li class="nav-divider"></li>
                  
                    <li class="">

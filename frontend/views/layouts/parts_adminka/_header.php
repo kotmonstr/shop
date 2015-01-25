@@ -23,37 +23,7 @@ use yii\widgets\Breadcrumbs;
                     <h5 class="logo"><span class="red">Kot</span>monstr</h5>
                 </a> 
             </header>
-            <div class="topnav">
-                <div class="btn-group">
-                    <a data-placement="bottom" data-original-title="Fullscreen" data-toggle="tooltip" class="btn btn-default btn-sm" id="toggleFullScreen">
-                        <i class="glyphicon glyphicon-fullscreen"></i>
-                    </a> 
-                </div>
-                <div class="btn-group">
-                    <a data-placement="bottom" data-original-title="E-mail" data-toggle="tooltip" class="btn btn-default btn-sm">
-                        <i class="fa fa-envelope"></i>
-                        <span class="label label-warning">5</span> 
-                    </a> 
-                    <a data-placement="bottom" data-original-title="Messages" href="#" data-toggle="tooltip" class="btn btn-default btn-sm">
-                        <i class="fa fa-comments"></i>
-                        <span class="label label-danger">4</span> 
-                    </a> 
-                    <a data-toggle="modal" data-original-title="Help" data-placement="bottom" class="btn btn-default btn-sm" href="#helpModal">
-                        <i class="fa fa-question"></i>
-                    </a> 
-                </div>
-                <div class="btn-group">
-                    <a href="login.html" data-toggle="tooltip" data-original-title="Logout" data-placement="bottom" class="btn btn-metis-1 btn-sm">
-                        <i class="fa fa-power-off"></i>
-                    </a> 
-                </div>
-                <div class="btn-group">
-                    <a data-placement="bottom" data-original-title="Show / Hide Left" data-toggle="tooltip" class="btn btn-primary btn-sm toggle-left" id="menu-toggle">
-                        <i class="fa fa-bars"></i>
-                    </a> 
-                    <a data-placement="bottom" data-original-title="Show / Hide Right" data-toggle="tooltip" class="btn btn-default btn-sm toggle-right"> <span class="glyphicon glyphicon-comment"></span>  </a> 
-                </div>
-            </div>
+           
             <div class="collapse navbar-collapse navbar-ex1-collapse">
 
                 <!-- .nav -->
@@ -83,9 +53,7 @@ use yii\widgets\Breadcrumbs;
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Live Search ...">
                     <span class="input-group-btn">
-                        <button class="btn btn-primary btn-sm text-muted" type="button">
-                            <i class="fa fa-search"></i>
-                        </button>
+                       
                     </span> 
                 </div>
             </form><!-- /.main-search -->
@@ -94,10 +62,8 @@ use yii\widgets\Breadcrumbs;
          
 
            
-            <h5>   <?php echo Breadcrumbs::widget([
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            ]);
-            ?></h5>
+            <h4>   <?php echo Yii::$app->controller->module->id . ' / '.  Yii::$app->controller->action->id;
+            ?></h4>
         </div><!-- /.main-bar -->
     </header><!-- /.head -->
 </div><!-- /#top -->

@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\BlogSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Статьи';
+$this->title = 'Новости';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div id="content">
@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
                             <p>
-                                <?= Html::a('Create Blog', ['create'], ['class' => 'btn btn-success']) ?>
+                                <?= Html::a('Создать новость', ['create'], ['class' => 'btn btn-success']) ?>
                             </p>
 
                             <?=
@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     
                                     'title',
                                     //'image',
-                                    'content:html',
+                                    //'content:html',
                                     //'created_at',
                                     // 'updated_at',
                                     // 'author',

@@ -42,7 +42,7 @@ class Blog extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'image', 'content'], 'required'],
+            [['title', 'content'], 'required'],
             [['content'], 'string'],
             [['created_at', 'updated_at'], 'integer'],
             [['title', 'image'], 'string', 'max' => 255],
@@ -57,12 +57,12 @@ class Blog extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'title' => Yii::t('app', 'Title'),
-            'image' => Yii::t('app', 'Image'),
-            'content' => Yii::t('app', 'Content'),
+            'title' => Yii::t('app', 'Заголовок'),
+            'image' => Yii::t('app', 'Картинка'),
+            'content' => Yii::t('app', 'Сдержание'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
-            'author' => Yii::t('app', 'Author'),
+            'author' => Yii::t('app', 'Автор'),
         ];
     }
 }

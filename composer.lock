@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "dc75d553b1dbbfc4be2cb5f6cad3fb39",
+    "hash": "61f5d1536e3b9f21e47d44bc02458713",
     "packages": [
         {
             "name": "2amigos/yii2-file-upload-widget",
@@ -94,18 +94,17 @@
             "time": "2014-04-07 22:24:40"
         },
         {
-            "name": "asofter/yii2-imperavi-redactor",
+            "name": "2amigos/yii2-tinymce-widget",
             "version": "dev-master",
-            "target-dir": "yii/imperavi",
             "source": {
                 "type": "git",
-                "url": "https://github.com/asofter/yii2-imperavi-redactor.git",
-                "reference": "c3ec2273e8927e399847348e7e0851770869a30e"
+                "url": "https://github.com/2amigos/yii2-tinymce-widget.git",
+                "reference": "542ceac58ebfd63632be79712cc253fe8edba80b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/asofter/yii2-imperavi-redactor/zipball/c3ec2273e8927e399847348e7e0851770869a30e",
-                "reference": "c3ec2273e8927e399847348e7e0851770869a30e",
+                "url": "https://api.github.com/repos/2amigos/yii2-tinymce-widget/zipball/542ceac58ebfd63632be79712cc253fe8edba80b",
+                "reference": "542ceac58ebfd63632be79712cc253fe8edba80b",
                 "shasum": ""
             },
             "require": {
@@ -113,8 +112,8 @@
             },
             "type": "yii2-extension",
             "autoload": {
-                "psr-0": {
-                    "yii\\imperavi\\": ""
+                "psr-4": {
+                    "dosamigos\\tinymce\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -123,26 +122,19 @@
             ],
             "authors": [
                 {
-                    "name": "Alexander Yaremchuk",
-                    "email": "alwex10@gmail.com"
-                },
-                {
-                    "name": "Veaceslav Medvedev",
-                    "email": "slavcopost@gmail.com"
-                },
-                {
-                    "name": "Alexander Makarov",
-                    "email": "sam@rmcreative.ru",
-                    "homepage": "http://rmcreative.ru/"
+                    "name": "Antonio Ramirez",
+                    "email": "ramirez.cobos@gmail.com",
+                    "homepage": "http://www.ramirezcobos.com"
                 }
             ],
-            "description": "Imperavi Redactor WYSIWYG widget (OEM-licensed for Yii 2)",
+            "description": "TinyMCE widget for Yii2.",
             "keywords": [
-                "imperavi",
-                "imperavi redactor",
+                "extension",
+                "tinymce",
+                "widget",
                 "yii"
             ],
-            "time": "2014-12-01 14:37:44"
+            "time": "2014-04-02 09:10:13"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -512,12 +504,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/karpoff/yii2-crop-image-upload.git",
-                "reference": "0688ac6f763ce3291c4359bd77d71318799e4933"
+                "reference": "d6071261b5bb3e1b83925a5878735c961b91e9a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/karpoff/yii2-crop-image-upload/zipball/0688ac6f763ce3291c4359bd77d71318799e4933",
-                "reference": "0688ac6f763ce3291c4359bd77d71318799e4933",
+                "url": "https://api.github.com/repos/karpoff/yii2-crop-image-upload/zipball/d6071261b5bb3e1b83925a5878735c961b91e9a0",
+                "reference": "d6071261b5bb3e1b83925a5878735c961b91e9a0",
                 "shasum": ""
             },
             "require": {
@@ -549,7 +541,7 @@
                 "upload",
                 "yii2"
             ],
-            "time": "2015-01-18 19:33:27"
+            "time": "2015-01-22 11:46:53"
         },
         {
             "name": "madcoda/php-youtube-api",
@@ -749,12 +741,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "179b88d375563814284ae90a1c4f6acc33cf8152"
+                "reference": "59da5ae5a42e22b5da052d0f5f7e4f6af71b17b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/179b88d375563814284ae90a1c4f6acc33cf8152",
-                "reference": "179b88d375563814284ae90a1c4f6acc33cf8152",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/59da5ae5a42e22b5da052d0f5f7e4f6af71b17b3",
+                "reference": "59da5ae5a42e22b5da052d0f5f7e4f6af71b17b3",
                 "shasum": ""
             },
             "require": {
@@ -830,7 +822,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-01-20 06:36:25"
+            "time": "2015-01-22 15:57:23"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -1058,12 +1050,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "7ba61fa08c27a9704d6f88b8f90c56215bbba3b3"
+                "reference": "b1167d9c67a3325a3f4099eb7d848c6c30cc87c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/7ba61fa08c27a9704d6f88b8f90c56215bbba3b3",
-                "reference": "7ba61fa08c27a9704d6f88b8f90c56215bbba3b3",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/b1167d9c67a3325a3f4099eb7d848c6c30cc87c2",
+                "reference": "b1167d9c67a3325a3f4099eb7d848c6c30cc87c2",
                 "shasum": ""
             },
             "require": {
@@ -1102,7 +1094,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2015-01-20 16:08:19"
+            "time": "2015-01-22 11:03:34"
         },
         {
             "name": "phpspec/php-diff",
