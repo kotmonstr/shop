@@ -15,8 +15,7 @@ class ImageSlider extends \yii\db\ActiveRecord
 {
    
 
-    public $file_image;
-   
+    public $file;
     /**
      * @inheritdoc
      */
@@ -30,7 +29,7 @@ class ImageSlider extends \yii\db\ActiveRecord
     {
         return [
            
-             ['file_image', 'file', 'extensions' => 'jpeg, gif, png'],
+           //  ['file', 'extensions' => 'jpeg, gif, png'],
         ];
     }
   

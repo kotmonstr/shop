@@ -14,7 +14,7 @@ use dosamigos\fileupload\FileUploadUI;
                     <?=
                     FileUploadUI::widget([
                         'model' => new \common\models\ImageSlider,
-                        'attribute' => 'file_image',
+                        'attribute' => 'file',
                         'url' => ['/image/upload-submit'],
                         'gallery' => false,
                         'fieldOptions' => [

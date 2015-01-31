@@ -20,7 +20,7 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'image')->textInput(['maxlength' => 255]) ?>
 
-  
+  <img src="<?= $model->image ?>" height="200px">
          
 <?= $form->field($model, 'content')->widget(TinyMce::className(), [
     'options' => ['rows' => 12],

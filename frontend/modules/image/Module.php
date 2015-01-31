@@ -9,7 +9,7 @@ class Module extends \yii\base\Module
     public function init()
     {
         parent::init();
-
+        // $enableCsrfValidation = false;
         // custom initialization code goes here
     }
 }

@@ -54,6 +54,11 @@ use yii\helpers\Url;
                         </a> 
                     </li>
                     <li class="">
+                        <a href="<?= Url::to('/image/form') ?>">
+                            <i class="fa"></i><span class="link-title">&nbsp; Загрузка фото</span> 
+                        </a> 
+                    </li>
+                    <li class="">
                         <a href="<?= Url::to('/video_categoria/index') ?>">
                             <i class="fa"></i><span class="link-title">&nbsp;Категории видео</span> 
                         </a> 

@@ -11,10 +11,12 @@ use yii\web\UploadedFile;
 //use yii\imagine\BaseImage;
 use Imagine\Image\ManipulatorInterface;
 use yii\imagine\Image;
+use common\models\Photo;
 
 class DefaultController extends Controller {
 
     public $layout = '/adminka';
+    public $enableCsrfValidation = false;
 
     public function actionIndex() {
 
@@ -34,20 +36,20 @@ class DefaultController extends Controller {
     }
 
     public function actionUploadSubmit() {
-        $model = new ImageSlider;
-
+        $model = new ImageSlider();
+        $name = date("dmYHis",time());
         if (Yii::$app->request->isPost) {
-            $model->file_image = UploadedFile::getInstance($model, 'file_image');
-            $model->file_image->saveAs('uploads/' . $model->file_image->baseName . '.' . $model->file_image->extension);
+            $model->file = UploadedFile::getInstance($model, 'file');
+            $model->file->saveAs('uploads/' . $name. '.' . $model->file->extension);
+
+            //vd(1);
 
 
 
 
-
-
-            $full_name = $model->file_image->baseName . '.' . $model->file_image->extension;
+            $full_name = $name . '.' . $model->file->extension;
             //vd($full_name);
-            $_model = new \common\models\ImageSlider;
+            $_model = new ImageSlider();
             $_model->name = $full_name;
             //$_model->validate();
             //vd($_model->getErrors());
@@ -57,7 +59,7 @@ class DefaultController extends Controller {
 //            Image::crop(Yii::getAlias('@frontend') . '/web/uploads/' . $full_name, 2048, 1200, [0, 0])
 //                    ->save(Yii::getAlias('@frontend') . '/web/uploads2/' . $full_name, ['quality' => 80]);
 
-     
+
 
             Image::thumbnail(Yii::getAlias('@frontend') . '/web/uploads/' . $full_name, 1200, 500)
                     ->save(Yii::getAlias(Yii::getAlias('@frontend') . '/web/thumbs/' . $full_name), ['quality' => 80]);
@@ -77,9 +79,12 @@ class DefaultController extends Controller {
      * @param string $id
      * @return mixed
      */
-    public function actionView($id) {
+    public function actionView() {
+        $this->layout = '/blog';
+        $model = Photo::find()->all();
+        
         return $this->render('view', [
-                    'model' => $this->findModel($id),
+                    'model' => $model,
         ]);
     }
 
@@ -151,6 +156,36 @@ class DefaultController extends Controller {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    public function actionForm() {
+        return $this->render('form');
+    }
+
+    public function actionSubmit() {
+        $model = new ImageSlider();
+        $name = date("dmYHis",time());
+            //vd($_POST);
+        if ($model->load(Yii::$app->request->post())) {
+            if (\yii\web\UploadedFile::getInstance($model, 'file')) {
+                $model->file = \yii\web\UploadedFile::getInstance($model, 'file');
+                $model->file->saveAs(Yii::getAlias('@app') . '/web/uploads-new/' . $name . '.' . $model->file->extension);
+                //$model->image_file_new = $model->image_file_new->baseName . '.' . $model->image_file_new->extension;
+                   //Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+                //return 1;
+                $_model = new Photo();
+                $_model->name = $name. '.' . $model->file->extension;
+                //$_model->validate();
+                //vd($_model->getErrors());
+                $_model->save();
+                
+                
+                
+                return $this->redirect(['form']);
+            }
+        }else{
+             //return 'error';
         }
     }
 

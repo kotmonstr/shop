@@ -50,7 +50,7 @@ class DefaultController extends Controller {
         $query = Blog::find();
 
         $countQuery = clone $query;
-        $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => 2]);
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => 5]);
         $models = $query->offset($pages->offset)
                 ->limit($pages->limit)
                 ->all();
