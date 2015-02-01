@@ -8,10 +8,10 @@ use common\models\ImageSliderSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
-//use yii\imagine\BaseImage;
 use Imagine\Image\ManipulatorInterface;
 use yii\imagine\Image;
 use common\models\Photo;
+use yii\helpers\FileHelper;
 
 class DefaultController extends Controller {
 
@@ -30,79 +30,49 @@ class DefaultController extends Controller {
     }
 
     public function actionUpload() {
-
         $model = new ImageSlider;
         return $this->render('upload', ['model' => $model]);
     }
 
     public function actionUploadSubmit() {
+
+        FileHelper::createDirectory(Yii::getAlias('@frontend') . '/web/upload/slider-big');
+        FileHelper::createDirectory(Yii::getAlias('@frontend') . '/web/upload/slider-thumbs');
+
         $model = new ImageSlider();
-        $name = date("dmYHis",time());
+        $name = date("dmYHis", time());
         if (Yii::$app->request->isPost) {
             $model->file = UploadedFile::getInstance($model, 'file');
-            $model->file->saveAs('uploads/' . $name. '.' . $model->file->extension);
-
-            //vd(1);
-
-
-
-
+            $model->file->saveAs('upload/slider-big/' . $name . '.' . $model->file->extension);
             $full_name = $name . '.' . $model->file->extension;
-            //vd($full_name);
             $_model = new ImageSlider();
             $_model->name = $full_name;
-            //$_model->validate();
-            //vd($_model->getErrors());
             $_model->save();
-
-
-//            Image::crop(Yii::getAlias('@frontend') . '/web/uploads/' . $full_name, 2048, 1200, [0, 0])
-//                    ->save(Yii::getAlias('@frontend') . '/web/uploads2/' . $full_name, ['quality' => 80]);
-
-
-
-            Image::thumbnail(Yii::getAlias('@frontend') . '/web/uploads/' . $full_name, 1200, 500)
-                    ->save(Yii::getAlias(Yii::getAlias('@frontend') . '/web/thumbs/' . $full_name), ['quality' => 80]);
-
+            Image::thumbnail(Yii::getAlias('@frontend') . '/web/upload/slider-big/' . $full_name, 1200, 500)
+                    ->save(Yii::getAlias(Yii::getAlias('@frontend') . '/web/upload/slider-thumbs/' . $full_name), ['quality' => 80]);
             Yii::$app->session->setFlash('success', 'Фоторгафии удачно сохранены');
         } else {
-
-
             Yii::$app->session->setFlash('error', 'Фоторгафии не удачно сохранены');
         }
 
         return $this->redirect('upload');
     }
 
-    /**
-     * Displays a single Image model.
-     * @param string $id
-     * @return mixed
-     */
     public function actionView() {
         $this->layout = '/blog';
         $model = Photo::find()->all();
-        
         return $this->render('view', [
                     'model' => $model,
         ]);
     }
 
-    /**
-     * Creates a new Image model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
     public function actionCreate() {
-
-
         $model = new Image();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $file = UploadedFile::getInstance($model, 'name');
             if ($fileModel = FileModel::saveAs($file, '@common/upload')) {
                 
             }
-
             if ($model->load(Yii::$app->request->post()) && $model->validate()) {
                 if ($model->saveUploadedFile() !== false) {
                     $model->save();
@@ -114,15 +84,8 @@ class DefaultController extends Controller {
         }
     }
 
-    /**
-     * Updates an existing Image model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $id
-     * @return mixed
-     */
     public function actionUpdate($id) {
         $model = $this->findModel($id);
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -132,25 +95,11 @@ class DefaultController extends Controller {
         }
     }
 
-    /**
-     * Deletes an existing Image model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $id
-     * @return mixed
-     */
     public function actionDelete($id) {
         $this->findModel($id)->delete();
-
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the Image model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return Image the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id) {
         if (($model = ImageSlider::findOne($id)) !== null) {
             return $model;
@@ -163,29 +112,40 @@ class DefaultController extends Controller {
         return $this->render('form');
     }
 
-    public function actionSubmit() {
+    public function actionFormMulty() {
+        $model = Photo::find()->all();
+        return $this->render('form-multy', ['_model' => $model]);
+    }
+
+    public function actionGetPhoto() {
+        $model = Photo::find()->all();
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        return $this->renderAjax('get-photo', ['_model' => $model]);
+    }
+
+    public function actionSubmitMulty() {
+
+        FileHelper::createDirectory(Yii::getAlias('@frontend') . '/web/upload/multy-big');
+        FileHelper::createDirectory(Yii::getAlias('@frontend') . '/web/upload/multy-thumbs');
+
+        $arr = [];
+        $i = 0;
         $model = new ImageSlider();
-        $name = date("dmYHis",time());
-            //vd($_POST);
-        if ($model->load(Yii::$app->request->post())) {
-            if (\yii\web\UploadedFile::getInstance($model, 'file')) {
-                $model->file = \yii\web\UploadedFile::getInstance($model, 'file');
-                $model->file->saveAs(Yii::getAlias('@app') . '/web/uploads-new/' . $name . '.' . $model->file->extension);
-                //$model->image_file_new = $model->image_file_new->baseName . '.' . $model->image_file_new->extension;
-                   //Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-                //return 1;
+        $name = date("dmYHis", time());
+        if (\yii\web\UploadedFile::getInstances($model, 'file')) {
+            $model->file = \yii\web\UploadedFile::getInstances($model, 'file');
+            foreach ($model->file as $file) {
+                $i++;
+                $file->saveAs('upload/multy-big/' . $name . '-' . $i . '.' . $file->extension);
+                Image::thumbnail(Yii::getAlias('@frontend') . '/web/upload/multy-big/' . $name . '-' . $i . '.' . $file->extension, 1200, 500)
+                        ->save(Yii::getAlias(Yii::getAlias('@frontend') . '/web/upload/multy-thumbs/' . $name . '-' . $i . '.' . $file->extension), ['quality' => 80]);
                 $_model = new Photo();
-                $_model->name = $name. '.' . $model->file->extension;
-                //$_model->validate();
-                //vd($_model->getErrors());
+                $_model->name = $name . '-' . $i . '.' . $file->extension;
                 $_model->save();
-                
-                
-                
-                return $this->redirect(['form']);
+                $arr[] = $name . '-' . $i . '.' . $file->extension;
             }
-        }else{
-             //return 'error';
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            return $arr;
         }
     }
 

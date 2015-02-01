@@ -53,9 +53,10 @@ use yii\helpers\Url;
                             <i class="fa"></i><span class="link-title">&nbsp; Видео</span> 
                         </a> 
                     </li>
+                    
                     <li class="">
-                        <a href="<?= Url::to('/image/form') ?>">
-                            <i class="fa"></i><span class="link-title">&nbsp; Загрузка фото</span> 
+                        <a href="<?= Url::to('/image/form-multy') ?>">
+                            <i class="fa"></i><span class="link-title">&nbsp; Мульти загрузка фото</span> 
                         </a> 
                     </li>
                     <li class="">
