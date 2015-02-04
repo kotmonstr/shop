@@ -105,15 +105,14 @@ $this->registerJsFile('/js/custom/upload-multy.js', ['depends' => AppAsset::clas
         right: 6px;
         display: inline-block;
         color: red;
-
         z-index: 999;
     }
     .btn-delete-image {
-     
+
         position: absolute;
-        top: 0px;
-        right: -80px;
-        
-    </style>
+        right: 14px;
+        bottom: 16px;
+    } 
+</style>
 
 

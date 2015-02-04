@@ -7,38 +7,10 @@ use common\models\Blog;
 use Yii;
 use common\models\BlogSearch;
 use yii\data\Pagination;
+use yii\helpers\FileHelper;
+use yii\web\UploadedFile;
 
 class DefaultController extends Controller {
-
-    public function actions() {
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
-            'image-upload' => [
-                'class' => 'vova07\imperavi\actions\UploadAction',
-                'url' => '/images/blog/', // Directory URL address, where files are stored.
-                'path' => '@webroot/images/blog/' // Or absolute path to directory where files are stored.
-            ],
-            'images-get' => [
-                'class' => 'vova07\imperavi\actions\GetAction',
-                'url' => '/images/blog/', // Directory URL address, where files are stored.
-                'path' => '@webroot/images/blog/', // Or absolute path to directory where files are stored.
-                'type' => '0',
-            ],
-            'files-get' => [
-                'class' => 'vova07\imperavi\actions\GetAction',
-                'url' => '/files/blog/', // Directory URL address, where files are stored.
-                'path' => '@webroot/files/blog/', // Or absolute path to directory where files are stored.
-                'type' => '1', //GetAction::TYPE_FILES,
-            ],
-            'file-upload' => [
-                'class' => 'vova07\imperavi\actions\UploadAction',
-                'url' => '/files/blog/', // Directory URL address, where files are stored.
-                'path' => '@webroot/files/blog/' // Or absolute path to directory where files are stored.
-            ],
-        ];
-    }
 
     public $layout = '/blog';
 
@@ -46,9 +18,7 @@ class DefaultController extends Controller {
         //$this->layout = '/blog';
         // Вывести список статей
 
-
         $query = Blog::find();
-
         $countQuery = clone $query;
         $pages = new Pagination(['totalCount' => $countQuery->count(), 'defaultPageSize' => 5]);
         $models = $query->offset($pages->offset)
@@ -60,18 +30,11 @@ class DefaultController extends Controller {
     }
 
     public function actionView() {
-        //$this->layout = '/blog';
         $id = Yii::$app->request->get('id');
-        //vd($id);
         $blog = Blog::find()->where(['id' => $id])->one();
-        //vd($blog->title);
         return $this->render('view', ['blog' => $blog]);
     }
 
-    /**
-     * Lists all Blog models.
-     * @return mixed
-     */
     public function actionShow() {
         $this->layout = '/adminka';
         $searchModel = new BlogSearch();
@@ -96,12 +59,7 @@ class DefaultController extends Controller {
         }
     }
 
-    /**
-     * Updates an existing Blog model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
+
     public function actionUpdate($id) {
         $this->layout = '/adminka';
         $model = $this->findModel($id);
@@ -115,31 +73,38 @@ class DefaultController extends Controller {
         }
     }
 
-    /**
-     * Deletes an existing Blog model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionDelete($id) {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the Blog model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Blog the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id) {
         if (($model = Blog::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionCreateImage() {
+     
+        FileHelper::createDirectory(Yii::getAlias('@frontend') . '/web/upload/blog');
+        $model = new Blog();
+        $name = date("dmYHis", time());
+        if (Yii::$app->request->isPost) {
+            $model->file = UploadedFile::getInstance($model, 'file');
+            $model->file->saveAs('upload/blog/' . $name . '.' . $model->file->extension);
+            $full_name = $name . '.' . $model->file->extension;
+            return '/upload/blog/'.$full_name;
+        }
+    }
+  public function actionViews($id)
+    {
+        $this->layout = '/adminka';
+        return $this->render('views', [
+            'model' => $this->findModel($id),
+        ]);
     }
 
 }

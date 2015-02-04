@@ -62,9 +62,9 @@ $module = Yii::$app->controller->module->id;
 
                                     <li><a href="<?= Url::to('/image/view') ?>">Новости RSS</a></li>
                                     <li><a href="<?= Url::to('/image/view') ?>">Фотографиии</a></li>
-                                    <li class="<?php if($url == 'blog/index'){echo"active";} ?>"><a href="<?= Url::to('/blog/index') ?>">Новости</a></li>
+                                    <li class="<?php if($url == 'blog/index' || $url = 'blog/view'){echo"active";} ?>"><a href="<?= Url::to('/blog/index') ?>">Новости</a></li>
                                     <li><a href="<?= Url::to('/video/youtube') ?>">Youtube</a></li>
-                                    <?php if (!Yii::$app->user->isGuest) { ?><li><a href="<?= Url::to('/admin/index') ?>">Админка</a></li><?php } ?>
+                                    <?php if (!Yii::$app->user->isGuest && Yii::$app->user->id == 1 || !Yii::$app->user->isGuest && Yii::$app->user->id == 2 || !Yii::$app->user->isGuest && Yii::$app->user->id == 3 ) { ?><li><a href="<?= Url::to('/admin/index') ?>">Админка</a></li><?php } ?>
                                     <?php if (Yii::$app->user->isGuest) { ?>
                                         <li><a href="<?= Url::to('/site/signup') ?>">Регистрация</a></li>
                                         <li><a href="<?= Url::to('/site/login') ?>">Вход</a></li>

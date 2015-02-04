@@ -38,6 +38,11 @@ use yii\helpers\Url;
                     </li>
                  
                     <li class="">
+                        <a href="<?= Url::to('/user/index') ?>">
+                            <i class="fa"></i><span class="link-title">&nbsp;Пользователи</span> 
+                        </a> 
+                    </li>
+                    <li class="">
                         <a href="<?= Url::to('/image/index') ?>">
                             <i class="fa"></i><span class="link-title">&nbsp;Слайдер</span> 
                         </a> 

@@ -148,5 +148,11 @@ class DefaultController extends Controller {
             return $arr;
         }
     }
+    public function actionDeletePhoto(){
+        $name= Yii::$app->request->post('name');
+        $model = Photo::find()->where(['name'=> $name])->one();
+        $model->delete();
+       
+    }
 
 }

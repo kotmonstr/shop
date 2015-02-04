@@ -10,14 +10,17 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
-//        'assetManager' => [
-//            'bundles' => [
-//                'yii\web\JqueryAsset' => [
-//                    'sourcePath' => null,
-//                //'js' => ['/js/last/jquery.js'] // тут путь до Вашего экземпляра jquery
-//                ],
-//            ],
-//        ],
+        'assetManager' => [
+            'basePath' => '@webroot/assets',
+            'baseUrl' => '@web/assets'
+        ],
+        'request' => [
+            'baseUrl' => ''
+        ],
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false
+        ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
@@ -56,6 +59,9 @@ return [
         ],
         'author' => [
             'class' => 'app\modules\author\Module',
+        ],
+        'user' => [
+            'class' => 'app\modules\user\Module',
         ],
     ],
     'params' => $params,

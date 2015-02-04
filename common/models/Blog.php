@@ -18,7 +18,7 @@ use Yii;
  */
 class Blog extends \yii\db\ActiveRecord
 {
-    
+    public $file;
     public function behaviors()
 {
     return [

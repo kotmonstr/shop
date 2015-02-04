@@ -42,17 +42,59 @@ function sendfile() {
 function ShowFullImage(name) {
 
     $('.photo-preview').addClass('active');
-    $('#image-inside').html( '<img id="temp" data-name="'+name+'" src="/upload/multy-big/'+name+'" alt="" height="100%" width="100%" z-index="998"><div><a href="javascript:void(0);" onclick="Delete()" class="btn btn-warning btn-delete-image"> Удалить</a></div>');
+    $('#image-inside').html('<img id="temp" data-name="' + name + '" src="/upload/multy-big/' + name + '" alt="" height="100%" width="100%" z-index="998"><div><a href="javascript:void(0);" onclick="Delete()" class="btn btn-warning btn-delete-image"> Удалить</a></div>');
 }
 function HideFullImage() {
 
     $('#image-inside').html('');
     $('.photo-preview').removeClass('active');
 }
-function Delete(){
-    
+function Delete() {
+
     var name = $('#temp').attr('data-name');
-    alert(name);
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
+    $.ajax({
+        url: '/image/delete-photo',
+        type: 'POST',
+        dataType: 'json',
+        cache: false,
+        data: {
+            _csrf: csrf_token,
+            name: name
+        },
+         beforeSend: function (xhr) {
+            jpreloader('show');
+        },
+        complete: function (data) {
+    
+            var csrf_token = $("meta[name=csrf-token]").attr("content");
+            $.ajax({
+                url: '/image/get-photo',
+                type: 'POST',
+                dataType: 'json',
+                cache: false,
+                data: {
+                    _csrf: csrf_token
+                },
+                success: function (data) {
+                    $('.photo-target').html(data);
+                    $('.photo-preview').removeClass('active');
+                     jpreloader('hide');
+                },
+//                complete: function (data) {
+//                    $('.photo-target').html(data);
+//                }
+            });
+        }
+    });
+                ;/* Preloader */
+    function jpreloader(item) {
+        if (item == 'show') {
+            $(document.body).append('<div class="back_background jpreloader" style="z-index: 90000;"></div>');
+        } else {
+            $('.jpreloader').remove();
+        }
+    }
 }
 
 

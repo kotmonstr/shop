@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'attribute' => 'name',
                                 'format' => 'html',
                                 'value' => function ($dataProvider) {
-                                    return '<img src='.'/thumbs/' . $dataProvider->name . ' height="100px">';
+                                    return '<img src='.'/upload/slider-thumbs/' . $dataProvider->name . ' height="100px">';
                                 },
                                 'label' => 'Предпросмотр',
                             ],

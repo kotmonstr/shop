@@ -5,7 +5,7 @@ use dosamigos\fileupload\FileUploadUI;
 /* @var $this yii\web\View */
 /* @var $model common\models\Image */
 
-$this->title = 'Create Image';
+$this->title = 'Создать  Image';
 $this->params['breadcrumbs'][] = ['label' => 'Images', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
