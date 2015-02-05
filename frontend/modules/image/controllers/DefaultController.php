@@ -59,7 +59,7 @@ class DefaultController extends Controller {
     }
 
     public function actionView() {
-        $this->layout = '/blog';
+        $this->layout = '/photo-slider';
         $model = Photo::find()->all();
         return $this->render('view', [
                     'model' => $model,

@@ -2,18 +2,13 @@
 
 use yii\helpers\Html;
 use frontend\assets\AppAsset;
-use common\models\ImageSlider;
-
+use common\models\Photo;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
 AppAsset::register($this);
 
-
-
-
-$model = ImageSlider::find()->all();
-
+   $model = Photo::find()->all();
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -29,7 +24,7 @@ $model = ImageSlider::find()->all();
     <body>
         <?php $this->beginBody() ?>
         <?php echo $this->render('parts/_header_no_slider') ?>
-        <?php echo $this->render('parts/_slider',['model'=>$model]) ?>
+        <?php echo $this->render('parts/_slider-photo',['model'=>$model]) ?>
         <?= $content ?>
          <?php echo $this->render('parts/_footer') ?>
         <?php $this->endBody() ?>
