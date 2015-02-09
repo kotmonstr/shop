@@ -19,6 +19,17 @@ use yii\helpers\StringHelper;
                     </select>
                 </div>
                 <div class="col-md-3" style="">
+                      Сортировка по автору:
+                    <select id="dropdown-author" class="form-control" style="width:200px" onchange="GetVideoByAuthorId($())">
+                        <option value="0"><?= 'Выбери ...'; ?></option>
+                        <option value="00"><?= 'Все'; ?></option>
+                        <?php foreach ($model_author as $video): ?>
+                            <option value="<?= $video->id ?>" > <?= $video->name ?> </option>
+
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="col-md-3" style="">
                     Сортировка по дате:
                     <select id="dropdown-time" class="form-control" style="width:200px" onchange="GetVideoByTime()">
                         <option value="0"><?= 'UP'; ?></option>

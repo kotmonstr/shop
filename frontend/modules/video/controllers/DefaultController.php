@@ -74,7 +74,8 @@ class DefaultController extends Controller {
                 ->orderBy('created_at Desc')
                 ->all();
         $model_categoria = VideoCategoria::find()->all();
-        return $this->render('preview', ['model' => $model_video, 'pages' => $pages, 'model_categoria' => $model_categoria]);
+        $model_author = Author::find()->all();
+        return $this->render('preview', ['model' => $model_video, 'pages' => $pages, 'model_categoria' => $model_categoria,'model_author'=> $model_author]);
     }
 
     public function actionTv1() {
@@ -83,12 +84,12 @@ class DefaultController extends Controller {
     }
 
     public function actionIndex() {
-        $pageName = 'Р“Р»Р°РІРЅР°СЏ';
+      
         $this->layout = '/adminka';
         $video_categoria = VideoCategoria::find()->all();
         $authors = Author::find()->all();
 
-        return $this->render('index', ['video_categoria' => $video_categoria, 'pageName' => $pageName, 'authors' => $authors]);
+        return $this->render('index', ['video_categoria' => $video_categoria,'authors' => $authors]);
     }
 
     public function actionYoutube() {
@@ -228,6 +229,19 @@ class DefaultController extends Controller {
                 $model = Video::find()->all();
             }else{
                 $model = Video::find()->where(['categoria' => $id])->all();
+            }
+        
+        //vd($model);
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        return $this->renderAjax('get-video-by-categoria-id', [ 'model' => $model]);
+    }
+    public function actionGetVideoByAuthorId() {
+                           
+        $id = Yii::$app->request->post('id');
+            if($id =='00'){
+                $model = Video::find()->all();
+            }else{
+                $model = Video::find()->where(['author_id' => $id])->all();
             }
         
         //vd($model);

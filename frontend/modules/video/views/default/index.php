@@ -31,7 +31,7 @@ use yii\helpers\Url;
                     <div class="form-group">
                         <label class="control-label col-lg-4">Введите адресс Youtube ролика</label>
                         <div class=" col-lg-6">
-                            <input class="validate[required] form-control" type="text" name="youtube" id="youtube" onkeyup="sendYoutubeCode()"/>
+                            <input class="validate[required] form-control" type="text" name="youtube" id="youtube" onkeyup="sendYoutubeCode()" onchange="sendYoutubeCode()"/>
                         </div>
                     </div>
                     <div class="form-group info">

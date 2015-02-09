@@ -30,9 +30,10 @@ class DefaultController extends Controller {
     }
 
     public function actionView() {
+         $this->layout = '/adminka';
         $id = Yii::$app->request->get('id');
         $blog = Blog::find()->where(['id' => $id])->one();
-        return $this->render('view', ['blog' => $blog]);
+        return $this->render('view', ['model' => $blog]);
     }
 
     public function actionShow() {
@@ -101,10 +102,19 @@ class DefaultController extends Controller {
     }
   public function actionViews($id)
     {
-        $this->layout = '/adminka';
-        return $this->render('views', [
-            'model' => $this->findModel($id),
-        ]);
+      
+      
+      
+      
+      
+      
+        $this->layout = '/blog';
+           $id = Yii::$app->request->get('id');
+        $blog = Blog::find()->where(['id' => $id])->one();
+        return $this->render('views', ['model' => $blog]);
+        
+        
+       
     }
 
 }

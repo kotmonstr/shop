@@ -6,6 +6,7 @@ use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use common\models\Author;
 
 /**
  * User model
@@ -189,5 +190,10 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+     public function getauthor()
+    {
+        // Customer has_many Order via Order.customer_id -> id
+        return $this->hasMany(Blog::className(), ['author' => 'id']);
     }
 }

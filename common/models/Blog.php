@@ -2,8 +2,9 @@
 
 namespace common\models;
 use yii\behaviors\TimestampBehavior;
-
+use yii\behaviors\BlameableBehavior;
 use Yii;
+use common\models\User;
 
 /**
  * This is the model class for table "blog".
@@ -19,6 +20,7 @@ use Yii;
 class Blog extends \yii\db\ActiveRecord
 {
     public $file;
+   
     public function behaviors()
 {
     return [
@@ -26,8 +28,19 @@ class Blog extends \yii\db\ActiveRecord
             'class' => TimestampBehavior::className(),
             'createdAtAttribute' => 'created_at',
         ],
-    ];
+    
+    
+    
+         [
+              'class' => BlameableBehavior::className(),
+             'createdByAttribute' => 'author',
+             'updatedByAttribute' => 'updater_id',
+            
+         ],
+      ];
+    
 }
+
     /**
      * @inheritdoc
      */
@@ -42,11 +55,10 @@ class Blog extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'content'], 'required'],
+            [['title'], 'required'],
             [['content'], 'string'],
-            [['created_at', 'updated_at'], 'integer'],
-            [['title', 'image'], 'string', 'max' => 255],
-            [['author'], 'string', 'max' => 100]
+            [['created_at', 'updated_at', 'author', 'view', 'updater_id'], 'integer'],
+            [['title', 'image'], 'string', 'max' => 255]
         ];
     }
 
@@ -58,11 +70,28 @@ class Blog extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'title' => Yii::t('app', 'Заголовок'),
-            'image' => Yii::t('app', 'Картинка'),
-            'content' => Yii::t('app', 'Сдержание'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
+            'image' => Yii::t('app', 'Image'),
+            'content' => Yii::t('app', 'Содержание'),
+            'created_at' => Yii::t('app', 'Дата создания'),
+            'updated_at' => Yii::t('app', 'Дата редактирования'),
             'author' => Yii::t('app', 'Автор'),
+            'view' => Yii::t('app', 'Просмотров'),
+            'updater_id' => Yii::t('app', 'Редактор ID'),
         ];
+    }
+     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUpdater()
+    {
+        return $this->hasOne(User::className(), ['id' => 'updater_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'author']);
     }
 }

@@ -52,6 +52,23 @@ function GetVideoByCategiryId(categoria_id) {
         }
     });
 }
+function GetVideoByAuthorId(categoria_id) {
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
+    var id = $("#dropdown-author option:selected").val();  
+    $.ajax({
+        url: '/video/get-video-by-author-id',
+        type: 'POST',
+        dataType: 'json',
+        cache: false,
+        data: {
+            _csrf: csrf_token,
+            id: id
+        },
+        success: function (data) {
+         $('#target').html(data);
+        }
+    });
+}
 function GetVideoByTime() {
     var csrf_token = $("meta[name=csrf-token]").attr("content");
     var time = $("#dropdown-time option:selected").val();

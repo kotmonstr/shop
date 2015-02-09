@@ -32,7 +32,7 @@ $form->field($model, 'content')->widget(TinyMce::className(), [
             //"table contextmenu directionality emoticons template textcolor paste fullpage textcolor colorpicker textpattern",
             "table contextmenu directionality emoticons template textcolor paste fullpage textcolor ",
         ],
-        'toolbar' => "cut copy paste | searchreplace | bullist numlist | outdent indent blockquote | undo redo | link unlink anchor | image media code | insertdatetime preview | forecolor backcolor  newdocument fullpage | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | fullscreen ",
+        'toolbar' => "cut copy paste | searchreplace | bullist numlist | outdent indent blockquote | undo redo | link unlink anchor | image media code | styleselect formatselect fontselect fontsizeselect| insertdatetime preview | forecolor backcolor  newdocument fullpage | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | fullscreen ",
     //'toolbar3'=> "table | hr removeformat | subscript superscript | charmap emoticons | print fullscreen | ltr rtl | spellchecker | visualchars visualblocks nonbreaking template pagebreak restoredraft",
     ]
 ]);

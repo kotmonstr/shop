@@ -1,64 +1,46 @@
 <?php
 
-use yii\helpers\Url;
+use yii\helpers\Html;
+use yii\widgets\DetailView;
+
+/* @var $this yii\web\View */
+/* @var $model common\models\VideoCategoria */
+
+//$this->title = $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Категориии Видео', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
+<div id="content">
+    <div class="outer">
+        <div class="inner bg-light lter">
+            <div id="collapse4" class="body">
+<div class="video-categoria-view">
 
+    <h1><?= Html::encode($this->title) ?></h1>
 
+    <p>
+        <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
+            'class' => 'btn btn-danger',
+            'data' => [
+                'confirm' => 'Are you sure you want to delete this item?',
+                'method' => 'post',
+            ],
+        ]) ?>
+    </p>
 
-<section id="content">
-    <div class="sub-content">
-        <div class="container shet">
-            <center><h3><?= $blog->title ?></h3></center>
-            <div class="row">
-                <center>
-                    <div class="span12 shet">  
-                        <img src="<?= $blog->image ?>" class="img-radius" alt="">
-                    </div>
-                </center>
-                <div class="span12">
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+          
+            'title',
+            'image',
+            'created_at',
+        ],
+    ]) ?>
 
-                    <?= $blog->content ?>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-<style>
-    p{
-        //color:#ffffff!important;
-        background-color: #fff!important;
-        font-family: verdana;
-    }
-    .shet{
-        padding:15px;
-        background-color: #fff!important;  
-    }
-    #content{
-        //box-shadow: inset 10px 10px 10px red;
-       // box-shadow: inset 10px 10px 10px 10px #00193A;
-    }
-    @media (min-width: 1200px){
-
-        .container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
-            width: 1150px;
-             
-        }
-    }
-    @media (min-width: 1200px){
-        .span12 {
-            width: 1150px;
-            margin-left: 20px!important;
-            padding: 15px;
-           
-        }
-    }
-    h3 {
-        font-size: 28px;
-        text-transform: uppercase;
-        font-family: verdana;
-        letter-spacing: -2px;
-        color: #666;
-    }
-
-</style>
+</div>
+</div>
+</div>
+</div>
+</div>
